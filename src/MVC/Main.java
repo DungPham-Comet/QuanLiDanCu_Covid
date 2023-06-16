@@ -3,23 +3,17 @@ package MVC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-
-
+import static MVC.constans.FXMLConstans.*;
+import java.io.IOException;
 public class Main extends Application {
 	@Override
-	public void start(Stage primaryStage) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/MVC/views/view/Scene.fxml"));
-			Scene scene = new Scene(root);
-			scene.getStylesheets().add(getClass().getResource("/MVC/views/css/application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(LOGIN_VIEW));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Quan ly ho khau");
+        stage.setScene(scene);
+        stage.show();
 	}
 	
 	public static void main(String[] args) {
