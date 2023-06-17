@@ -15,35 +15,30 @@
       <TableView layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
          <columns>
             <TableColumn prefWidth="55.19997787475586" text="#" />
-            <TableColumn prefWidth="170.40003967285156" text="Người cách ly" />
-            <TableColumn prefWidth="84.79998779296875" text="Mức độ" />
-            <TableColumn prefWidth="163.20001220703125" text="Địa điểm" />
-            <TableColumn prefWidth="163.20001220703125" text="Thời gian" />
+            <TableColumn prefWidth="208.00001525878906" text="Người xét nghiệm" />
+            <TableColumn prefWidth="87.20001220703125" text="Hình thức" />
+            <TableColumn prefWidth="160.0" text="Thời gian" />
+            <TableColumn prefWidth="118.4000122070313" text="Kết quả" />
          </columns>
       </TableView>
       <Pagination layoutX="255.0" layoutY="392.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="200.0" prefWidth="200.0" />
-      <Label alignment="TOP_LEFT" layoutX="45.0" layoutY="23.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
+      <Label alignment="TOP_LEFT" layoutX="45.0" layoutY="23.0" prefHeight="35.0" prefWidth="150.0" text="Xét nghiệm">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="495.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </Button>
       <Button layoutX="611.0" layoutY="140.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button accessibleRoleDescription=" " layoutX="400.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
+      <Button layoutX="527.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="46.0" layoutY="86.0" prefHeight="30.0" prefWidth="219.0" promptText="Tìm kiếm" />
-      <RadioButton layoutX="46.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên" />
-      <RadioButton layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo mức độ" />
+      <TextField layoutX="39.0" layoutY="88.0" prefHeight="30.0" prefWidth="192.0" promptText="Tìm kiếm" />
+      <RadioButton layoutX="39.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên" />
+      <RadioButton layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo kết quả" />
    </children>
 </AnchorPane>
