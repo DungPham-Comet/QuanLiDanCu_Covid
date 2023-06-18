@@ -27,17 +27,12 @@
          </font>
       </Label>
       <TextField layoutX="44.0" layoutY="74.0" prefHeight="30.0" prefWidth="192.0" promptText="Lọc theo tên người mất" />
-      <Button layoutX="394.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button layoutX="493.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
       <Button layoutX="607.0" layoutY="75.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="504.0" layoutY="75.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
