@@ -11,6 +11,7 @@
 
 <AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <Pagination layoutX="255.0" layoutY="392.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="200.0" prefWidth="200.0" />
       <TableView layoutX="71.0" layoutY="350.0" prefHeight="194.0" prefWidth="567.0">
          <columns>
             <TableColumn prefWidth="55.19997787475586" text="#" />
@@ -19,7 +20,6 @@
             <TableColumn prefWidth="157.60003662109375" text="Phương tiện" />
          </columns>
       </TableView>
-      <Pagination layoutX="255.0" layoutY="392.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="200.0" prefWidth="200.0" />
       <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="22.0" prefHeight="35.0" prefWidth="215.0" text="Thông tin di chuyển">
          <font>
             <Font size="24.0" />
