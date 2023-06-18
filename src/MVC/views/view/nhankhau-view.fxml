@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
@@ -9,12 +10,11 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.nhankhau.NhanKhauController">
    <children>
-      <Pagination fx:id="pagination" layoutX="46.0" layoutY="134.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="448.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="142.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="279.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="306.0" prefWidth="634.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="175.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
             <TableColumn fx:id="hoVaTenColumn" prefWidth="119.19998168945312" text="Họ và tên" />
@@ -29,40 +29,40 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <Text layoutX="51.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân khẩu" textAlignment="CENTER" wrappingWidth="98.9140625">
-         <font>
-            <Font name="Segoe UI" size="18.0" />
-         </font>
-      </Text>
-      <Button layoutX="518.0" layoutY="88.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button layoutX="484.0" layoutY="137.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="searchTextField" layoutX="47.0" layoutY="87.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="searchTextField" layoutX="38.0" layoutY="87.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Button layoutX="623.0" layoutY="88.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
+      <Button layoutX="613.0" layoutY="137.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="radioBtnFilterId" layoutX="265.0" layoutY="93.0" mnemonicParsing="false" selected="true" text="CCCD">
+      <RadioButton fx:id="radioBtnFilterId" layoutX="38.0" layoutY="134.0" mnemonicParsing="false" selected="true" text="CCCD">
          <toggleGroup>
             <ToggleGroup fx:id="filterCategory" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioBtnFilterTitle" layoutX="331.0" layoutY="93.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="53.0" text="Tên">
+      <RadioButton fx:id="radioBtnFilterTitle" layoutX="114.0" layoutY="133.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="53.0" text="Tên">
          <toggleGroup>
             <ToggleGroup fx:id="filterCategory1" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="radioBtnFilterTitle1" layoutX="385.0" layoutY="93.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="92.0" text="Tên chủ hộ">
+      <RadioButton fx:id="radioBtnFilterTitle1" layoutX="184.0" layoutY="133.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="92.0" text="Tên chủ hộ">
          <toggleGroup>
             <ToggleGroup fx:id="filterCategory11" />
          </toggleGroup>
       </RadioButton>
+      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="127.0" text="Nhân khẩu">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

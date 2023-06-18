@@ -17,10 +17,10 @@
                   <Button mnemonicParsing="false" onAction="#switchToHoKhau" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="HỘ KHẨU" textAlignment="CENTER" textFill="WHITE" />
                   <Button mnemonicParsing="false" onAction="#switchToTamTru" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="TẠM TRÚ" textAlignment="CENTER" textFill="#fffdfd" />
                   <Button mnemonicParsing="false" onAction="#switchToTamVang" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="TẠM VẮNG" textAlignment="CENTER" textFill="#fffbfb" />
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="KHAI TỬ" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="LỊCH TRÌNH" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="CÁCH LY" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="XÉT NGHIỆM" textAlignment="CENTER" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#switchToKhaiTu" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="KHAI TỬ" textAlignment="CENTER" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#switchToLichTrinh" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="LỊCH TRÌNH" textAlignment="CENTER" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#switchToCachLy" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="CÁCH LY" textAlignment="CENTER" textFill="WHITE" />
+                  <Button mnemonicParsing="false" onAction="#switchToXetNghiem" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="XÉT NGHIỆM" textAlignment="CENTER" textFill="WHITE" />
                </children>
             </VBox>
          </children>

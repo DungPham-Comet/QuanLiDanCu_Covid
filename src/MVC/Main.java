@@ -11,7 +11,7 @@ public class Main extends Application {
 	public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(LOGIN_VIEW));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Quan ly ho khau");
+        stage.setTitle("Quản lí hộ khẩu");
         stage.setScene(scene);
         stage.show();
 	}

@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.hokhau.HoKhauController">
    <children>
+      <Pagination layoutX="255.0" layoutY="392.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="200.0" prefWidth="200.0" />
       <TableView layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
          <columns>
             <TableColumn prefWidth="55.19997787475586" text="#" />
@@ -21,8 +22,7 @@
             <TableColumn prefWidth="163.20001220703125" text="Thời gian" />
          </columns>
       </TableView>
-      <Pagination layoutX="255.0" layoutY="392.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="200.0" prefWidth="200.0" />
-      <Label alignment="TOP_LEFT" layoutX="45.0" layoutY="23.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
+      <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="29.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
          <font>
             <Font size="24.0" />
          </font>
@@ -32,13 +32,17 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button accessibleRoleDescription=" " layoutX="478.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
+      <Button accessibleRoleDescription=" " layoutX="490.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField layoutX="46.0" layoutY="86.0" prefHeight="30.0" prefWidth="219.0" promptText="Tìm kiếm" />
       <RadioButton layoutX="46.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên" />
       <RadioButton layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo mức độ" />
+      <TextField fx:id="searchTextField" layoutX="39.0" layoutY="90.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+         <font>
+            <Font name="Segoe UI Italic" size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

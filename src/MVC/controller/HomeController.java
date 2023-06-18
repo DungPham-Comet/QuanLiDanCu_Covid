@@ -38,4 +38,24 @@ public class HomeController {
     void switchToTamVang() throws IOException {
     	viewUtils.changeAnchorPane(basePane, TAMVANG_VIEW);
     }
+    
+    @FXML
+    void switchToKhaiTu() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, KHAITU_VIEW);
+    }
+    
+    @FXML
+    void switchToLichTrinh() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, LICHTRINH_VIEW);
+    }
+    
+    @FXML
+    void switchToCachLy() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, CACHLY_VIEW);
+    }
+    
+    @FXML
+    void switchToXetNghiem() throws IOException {
+    	viewUtils.changeAnchorPane(basePane, XETNGHIEM_VIEW);
+    }
 }
