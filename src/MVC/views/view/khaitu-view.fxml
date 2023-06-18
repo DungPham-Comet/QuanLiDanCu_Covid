@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.hokhau.HoKhauController">
+<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.khaitu.KhaiTuController">
    <children>
       <Pagination layoutX="45.0" layoutY="216.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="376.0" prefWidth="622.0" />
       <TableView layoutX="44.0" layoutY="174.0" prefHeight="367.0" prefWidth="622.0">
@@ -26,7 +26,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="482.0" layoutY="126.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button layoutX="482.0" layoutY="126.0" mnemonicParsing="false" onAction="#addKhaiTu" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -36,7 +36,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="searchTextField" layoutX="44.0" layoutY="103.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="searchTextField" layoutX="44.0" layoutY="103.0" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>

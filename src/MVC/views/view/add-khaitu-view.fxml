@@ -27,6 +27,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
+      <Pagination fx:id="pagination" layoutX="57.0" layoutY="282.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="282.0" prefWidth="595.0" />
       <TableView fx:id="tableView" layoutX="57.0" layoutY="280.0" prefHeight="232.0" prefWidth="595.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
@@ -42,7 +43,6 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <Pagination fx:id="pagination" layoutX="57.0" layoutY="282.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="282.0" prefWidth="595.0" />
       <DatePicker layoutX="153.0" layoutY="87.0" />
       <Label layoutX="57.0" layoutY="86.0" text="Ngày mất">
          <font>
