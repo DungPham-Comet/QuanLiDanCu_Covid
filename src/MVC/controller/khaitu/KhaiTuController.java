@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -22,9 +25,11 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
+import MVC.controller.nhankhau.DetailNhanKhauController;
 import MVC.model.KhaiTu;
 import MVC.model.NhanKhau;
 import MVC.services.KhaiTuServices;
+import MVC.services.NhanKhauServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,7 +42,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import static MVC.utils.Utils.*;
 import static MVC.constans.FXMLConstans.*;
+import static MVC.utils.Utils.createDialog;
 import static MVC.constans.DBConstans.*;
 
 public class KhaiTuController implements Initializable{
@@ -91,7 +98,7 @@ public class KhaiTuController implements Initializable{
         try {
             ResultSet result = KhaiTuServices.getAllKhaiTu();
             while (result.next()) {
-            	khaiTuList.add(new KhaiTu(result.getInt("IdKhaiTu"), result.getString("TenNguoiChet"), result.getString("TenNguoiKhai"), result.getString("NgayKhai"), result.getString("NgayChet"), result.getString("LyDoChet")));
+            	khaiTuList.add(new KhaiTu(result.getInt("IdKhaiTu"), result.getString("TenNguoiChet"), result.getString("TenNguoiKhai"), convertDate(result.getString("NgayKhai")),convertDate(result.getString("NgayChet")), result.getString("LyDoChet")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -107,15 +114,34 @@ public class KhaiTuController implements Initializable{
             TableRow<KhaiTu> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    detail(event);
+                    try {
+						detail(event);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
                 }
             });
             return row;
         });
     }
     
-    public void detail(MouseEvent event) {
-		// TODO Auto-generated method stub
+    public void detail(MouseEvent event) throws IOException {
+    	
+    	KhaiTu selected = tableKhaiTu.getSelectionModel().getSelectedItem();
+    	if(selected == null) {
+    		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một mục");
+    	}
+    	else {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(DETAIL_KHAITU_VIEW));
+            Parent studentViewParent = loader.load();
+            Scene scene = new Scene(studentViewParent);
+            DetailKhaiTuController controller = loader.getController();
+            controller.setKhaiTu(selected);
+            stage.setScene(scene);
+    	}
 		
 	}
 
@@ -131,8 +157,37 @@ public class KhaiTuController implements Initializable{
     
     @FXML
     void deleteKhaiTu(ActionEvent event) {
-
+    	KhaiTu selected = tableKhaiTu.getSelectionModel().getSelectedItem();
+        if (selected == null) createDialog(Alert.AlertType.WARNING,
+                "Cảnh báo",
+                "Vui lòng chọn một mục để tiếp tục", "");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận xóa thông tin");
+            alert.setContentText("Đồng chí muốn xóa thông tin khai tử này?");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    // Delete in Database
+                    try {
+                        int ID = selected.getIdKhaiTu();
+                        int result1 = KhaiTuServices.deleteKhaiTu(ID);
+                        if (result1 == 1) createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");
+                        ViewUtils viewUtils = new ViewUtils();
+                        viewUtils.backToView(event, KHAITU_VIEW);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
+    
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
 		indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
