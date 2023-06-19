@@ -2,30 +2,30 @@ package MVC.model;
 
 public class ThanhVienCuaHo {
 	
-	private String idNhanKhau;
-	private String maHoKhau;
+	private int idNhanKhau;
+	private int maHoKhau;
 	private String quanHeChuHo;
 	
-	public ThanhVienCuaHo(String idNhanKhau, String maHoKhau, String quanHeChuHo) {
+	public ThanhVienCuaHo(int idNhanKhau, int maHoKhau, String quanHeChuHo) {
 		super();
 		this.idNhanKhau = idNhanKhau;
 		this.maHoKhau = maHoKhau;
 		this.quanHeChuHo = quanHeChuHo;
 	}
 
-	public String getIdNhanKhau() {
+	public int getIdNhanKhau() {
 		return idNhanKhau;
 	}
 
-	public void setIdNhanKhau(String idNhanKhau) {
+	public void setIdNhanKhau(int idNhanKhau) {
 		this.idNhanKhau = idNhanKhau;
 	}
 
-	public String getMaHoKhau() {
+	public int getMaHoKhau() {
 		return maHoKhau;
 	}
 
-	public void setMaHoKhau(String maHoKhau) {
+	public void setMaHoKhau(int maHoKhau) {
 		this.maHoKhau = maHoKhau;
 	}
 
