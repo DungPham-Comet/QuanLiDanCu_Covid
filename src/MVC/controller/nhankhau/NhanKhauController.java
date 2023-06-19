@@ -57,12 +57,6 @@ public class NhanKhauController implements Initializable {
     private ToggleGroup filterCategory;
 
     @FXML
-    private ToggleGroup filterCategory1;
-
-    @FXML
-    private ToggleGroup filterCategory11;
-
-    @FXML
     private TableColumn<NhanKhau, String> gioiTinhColumn;
 
     @FXML
@@ -90,13 +84,10 @@ public class NhanKhauController implements Initializable {
     private TableColumn<NhanKhau, String> quocTichColumn;
 
     @FXML
-    private RadioButton radioBtnFilterId;
-
+    private RadioButton cccdFilterBtn;
+    
     @FXML
-    private RadioButton radioBtnFilterTitle;
-
-    @FXML
-    private RadioButton radioBtnFilterTitle1;
+    private RadioButton tenFilterBtn;
 
     @FXML
     private TextField searchTextField;
@@ -179,7 +170,19 @@ public class NhanKhauController implements Initializable {
                     return true;
                 }
                 String lowerCaseFilter = searchTextField.getText().toLowerCase();
-                if (person.getHoTen().toLowerCase().contains(lowerCaseFilter)) {
+                String filterType = "";
+                if(cccdFilterBtn.isSelected()) {
+                	if(person.getMaCccd() == null) {
+                		filterType = "";
+                	}
+                	else {
+                		filterType = person.getMaCccd();
+                	}
+                }
+                else if(tenFilterBtn.isSelected()) {
+                	filterType = person.getHoTen().toLowerCase();
+                }
+                if (filterType.contains(lowerCaseFilter)) {
                     return true;
                 } else {
                     return false;
