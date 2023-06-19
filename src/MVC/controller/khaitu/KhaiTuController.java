@@ -45,7 +45,8 @@ public class KhaiTuController implements Initializable{
 	@FXML
   private AnchorPane basePane;
   
-	private TableColumn<KhaiTu, Integer> idKhaiTuCol;
+    @FXML
+    private TableColumn<KhaiTu, Integer> indexColumn;
 
 	@FXML
 	private TableColumn<KhaiTu, String> lyDoCol;
@@ -58,6 +59,9 @@ public class KhaiTuController implements Initializable{
 
 	@FXML
 	private TableColumn<KhaiTu, String> nguoiChetCol;
+	
+    @FXML
+    private TableColumn<KhaiTu, String> nguoiKhaiCol;
 
 	@FXML
 	private Pagination pagination;
@@ -85,14 +89,9 @@ public class KhaiTuController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resource) {
         try {
-            conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-            ResultSet result = KhaiTuServices.getAllFacility(conn);
+            ResultSet result = KhaiTuServices.getAllKhaiTu();
             while (result.next()) {
-            	String deadName = KhaiTuServices.getTenNguoiChet(conn, result.getInt("idNguoiChet"));
-                String khaiName = KhaiTuServices.getTenNguoiKhai(conn, result.getInt("idNguoiKhai"));
-                khaiTuList.add(new KhaiTu(result.getInt("idKhaiTu"), deadName, khaiName,
-                		result.getString("ngayKhai"), result.getString("ngayChet"), result.getString("lyDoChet")));
-
+            	khaiTuList.add(new KhaiTu(result.getInt("IdKhaiTu"), result.getString("TenNguoiChet"), result.getString("TenNguoiKhai"), result.getString("NgayKhai"), result.getString("NgayChet"), result.getString("LyDoChet")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,10 +133,11 @@ public class KhaiTuController implements Initializable{
     void deleteKhaiTu(ActionEvent event) {
 
     }
+	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-		
-        idKhaiTuCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+		indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
         nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
+        nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
         ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
         lyDoCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("lyDoChet"));
         ngayKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayKhai"));
