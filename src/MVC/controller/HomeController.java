@@ -40,7 +40,7 @@ public class HomeController {
     }
     
     @FXML
-    void switchToKhaiTu() throws IOException {
+    public void switchToKhaiTu() throws IOException {
     	viewUtils.changeAnchorPane(basePane, KHAITU_VIEW);
     }
     
