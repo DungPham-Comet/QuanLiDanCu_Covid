@@ -34,11 +34,11 @@
       </TextField>
       <TableView fx:id="tableKhaiTu" layoutX="44.0" layoutY="174.0" prefHeight="367.0" prefWidth="622.0">
          <columns>
-            <TableColumn fx:id="idKhaiTu" prefWidth="46.40003967285156" text="#" />
-            <TableColumn fx:id="nguoiChet" prefWidth="170.40003967285156" text="Người mất" />
-            <TableColumn fx:id="ngayChet" prefWidth="131.20001220703125" text="Ngày mất" />
-            <TableColumn fx:id="lyDo" prefWidth="134.39996337890625" text="Lý do" />
-            <TableColumn fx:id="ngayKhai" prefWidth="136.79996337890623" text="Ngày khai" />
+            <TableColumn fx:id="idKhaiTuCol" prefWidth="46.40003967285156" text="#" />
+            <TableColumn fx:id="nguoiChetCol" prefWidth="170.40003967285156" text="Người mất" />
+            <TableColumn fx:id="ngayChetCol" prefWidth="131.20001220703125" text="Ngày mất" />
+            <TableColumn fx:id="lyDoCol" prefWidth="134.39996337890625" text="Lý do" />
+            <TableColumn fx:id="ngayKhaiCol" prefWidth="136.79996337890623" text="Ngày khai" />
          </columns>
       </TableView>
    </children>

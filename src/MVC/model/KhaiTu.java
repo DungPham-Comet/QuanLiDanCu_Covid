@@ -3,17 +3,17 @@ package MVC.model;
 public class KhaiTu {
 	
 	private int idKhaiTu;
-	private int idNguoiChet;
-	private int idNguoiKhai;
+	private String tenNguoiChet;
+	private String tenNguoiKhai;
 	private String ngayKhai;
 	private String ngayChet;
 	private String lyDoChet;
-	
-	public KhaiTu(int idKhaiTu, int idNguoiChet, int idNguoiKhai, String ngayKhai, String ngayChet, String lyDoChet) {
+	public KhaiTu(int idKhaiTu, String tenNguoiChet, String tenNguoiKhai, String ngayKhai, String ngayChet,
+			String lyDoChet) {
 		super();
 		this.idKhaiTu = idKhaiTu;
-		this.idNguoiChet = idNguoiChet;
-		this.idNguoiKhai = idNguoiKhai;
+		this.tenNguoiChet = tenNguoiChet;
+		this.tenNguoiKhai = tenNguoiKhai;
 		this.ngayKhai = ngayKhai;
 		this.ngayChet = ngayChet;
 		this.lyDoChet = lyDoChet;
@@ -26,21 +26,20 @@ public class KhaiTu {
 	public void setIdKhaiTu(int idKhaiTu) {
 		this.idKhaiTu = idKhaiTu;
 	}
-
-	public int getIdNguoiChet() {
-		return idNguoiChet;
+	public String getTenNguoiChet() {
+		return tenNguoiChet;
 	}
 
-	public void setIdNguoiChet(int idNguoiChet) {
-		this.idNguoiChet = idNguoiChet;
+	public void setTenNguoiChet(String tenNguoiChet) {
+		this.tenNguoiChet = tenNguoiChet;
 	}
 
-	public int getIdNguoiKhai() {
-		return idNguoiKhai;
+	public String getTenNguoiKhai() {
+		return tenNguoiKhai;
 	}
 
-	public void setIdNguoiKhai(int idNguoiKhai) {
-		this.idNguoiKhai = idNguoiKhai;
+	public void setTenNguoiKhai(String tenNguoiKhai) {
+		this.tenNguoiKhai = tenNguoiKhai;
 	}
 
 	public String getNgayKhai() {
@@ -66,6 +65,5 @@ public class KhaiTu {
 	public void setLyDoChet(String lyDoChet) {
 		this.lyDoChet = lyDoChet;
 	}
-	
 	
 }
