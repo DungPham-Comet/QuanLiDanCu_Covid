@@ -43,9 +43,8 @@ import static MVC.constans.DBConstans.*;
 public class KhaiTuController implements Initializable{
 	
 	@FXML
-    private AnchorPane basePane;
-	
-	@FXML
+  private AnchorPane basePane;
+  
 	private TableColumn<KhaiTu, Integer> idKhaiTuCol;
 
 	@FXML
@@ -68,7 +67,7 @@ public class KhaiTuController implements Initializable{
 
 	@FXML
 	private TableView<KhaiTu> tableKhaiTu;
-	
+  
 	@FXML
     private URL location;
 	
@@ -135,7 +134,6 @@ public class KhaiTuController implements Initializable{
     void deleteKhaiTu(ActionEvent event) {
 
     }
-
 	public Node createTableView(Integer pageIndex) {
 		
         idKhaiTuCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));

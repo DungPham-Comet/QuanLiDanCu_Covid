@@ -1,20 +1,20 @@
 package MVC.model;
 
+
 public class NhanKhau {
 	
 	private int idNhanKhau; 
 	private String maCccd;
 	private String hoTen;
 	private String ngaySinh;
-	private boolean gioiTinh;
+	private String gioiTinh;
 	private String danToc;
 	private String quocTich;
 	private String tonGiao;
 	private String nguyenQuan;
 	private String thuongTru;
 	private String ngheNghiep;
-	
-	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, boolean gioiTinh, String danToc,
+	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, String gioiTinh, String danToc,
 			String quocTich, String tonGiao, String nguyenQuan, String thuongTru, String ngheNghiep) {
 		super();
 		this.idNhanKhau = idNhanKhau;
@@ -74,11 +74,11 @@ public class NhanKhau {
 		this.ngaySinh = ngaySinh;
 	}
 
-	public boolean isGioiTinh() {
+	public String isGioiTinh() {
 		return gioiTinh;
 	}
 
-	public void setGioiTinh(boolean gioiTinh) {
+	public void setGioiTinh(String gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 

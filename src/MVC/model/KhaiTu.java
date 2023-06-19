@@ -8,7 +8,6 @@ public class KhaiTu {
 	private String ngayKhai;
 	private String ngayChet;
 	private String lyDoChet;
-	
 	public KhaiTu(int idKhaiTu, String tenNguoiChet, String tenNguoiKhai, String ngayKhai, String ngayChet,
 			String lyDoChet) {
 		super();
@@ -27,7 +26,6 @@ public class KhaiTu {
 	public void setIdKhaiTu(int idKhaiTu) {
 		this.idKhaiTu = idKhaiTu;
 	}
-
 	public String getTenNguoiChet() {
 		return tenNguoiChet;
 	}

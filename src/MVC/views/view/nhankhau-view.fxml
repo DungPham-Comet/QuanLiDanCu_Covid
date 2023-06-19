@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.nhankhau.NhanKhauController">
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.nhankhau.NhanKhauController">
    <children>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="279.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="306.0" prefWidth="634.0" />
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="175.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="410.0" prefWidth="634.0" />
       <TableView fx:id="tableView" layoutX="38.0" layoutY="175.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
