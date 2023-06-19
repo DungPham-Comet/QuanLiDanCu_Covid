@@ -14,7 +14,6 @@ public class NhanKhau {
 	private String nguyenQuan;
 	private String thuongTru;
 	private String ngheNghiep;
-	
 	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, String gioiTinh, String danToc,
 			String quocTich, String tonGiao, String nguyenQuan, String thuongTru, String ngheNghiep) {
 		super();

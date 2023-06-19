@@ -1,5 +1,7 @@
 package MVC.utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,5 +37,10 @@ public class Utils {
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(time);
         return m.matches();
+    }
+    
+    public static LocalDate LOCAL_DATE(String dateString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return LocalDate.parse(dateString, formatter);
     }
 }

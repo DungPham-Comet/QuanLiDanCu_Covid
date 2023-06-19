@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="710.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/nhankhau-detail.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.nhankhau.DetailNhanKhauController">
    <children>
-      <Button fx:id="update_btn" layoutX="500.0" layoutY="558.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button fx:id="update_btn" layoutX="500.0" layoutY="558.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

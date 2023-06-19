@@ -1,12 +1,12 @@
 package MVC.model;
 
 public class SoHoKhau {
-	private String idHoKhau;
+	private int idHoKhau;
 	private String ngayTao;
 	private String diaChi;
-	private String idChuHo;
+	private int idChuHo;
 	
-	public SoHoKhau(String idHoKhau, String ngayTao, String diaChi, String idChuHo) {
+	public SoHoKhau(int idHoKhau, String ngayTao, String diaChi, int idChuHo) {
 		super();
 		this.idHoKhau = idHoKhau;
 		this.ngayTao = ngayTao;
@@ -14,11 +14,11 @@ public class SoHoKhau {
 		this.idChuHo = idChuHo;
 	}
 
-	public String getIdHoKhau() {
+	public int getIdHoKhau() {
 		return idHoKhau;
 	}
 
-	public void setIdHoKhau(String idHoKhau) {
+	public void setIdHoKhau(int idHoKhau) {
 		this.idHoKhau = idHoKhau;
 	}
 
@@ -38,11 +38,11 @@ public class SoHoKhau {
 		this.diaChi = diaChi;
 	}
 
-	public String getIdChuHo() {
+	public int getIdChuHo() {
 		return idChuHo;
 	}
 
-	public void setIdChuHo(String idChuHo) {
+	public void setIdChuHo(int idChuHo) {
 		this.idChuHo = idChuHo;
 	}
 	
