@@ -7,14 +7,24 @@ public class Cccd {
 	private String noiCap;
 	private String ngayHetHan;
 	private String dacDiem;
+	private int idNhanKhau;
 	
-	public Cccd(String idCccd, String ngayCap, String noiCap, String ngayHetHan, String dacDiem) {
+	public Cccd(String idCccd, String ngayCap, String noiCap, String ngayHetHan, String dacDiem, int idNhanKhau) {
 		super();
 		this.idCccd = idCccd;
 		this.ngayCap = ngayCap;
 		this.noiCap = noiCap;
 		this.ngayHetHan = ngayHetHan;
 		this.dacDiem = dacDiem;
+		this.idNhanKhau = idNhanKhau;
+	}
+
+	public int getIdNhanKhau() {
+		return idNhanKhau;
+	}
+
+	public void setIdNhanKhau(int idNhanKhau) {
+		this.idNhanKhau = idNhanKhau;
 	}
 
 	public String getIdCccd() {
