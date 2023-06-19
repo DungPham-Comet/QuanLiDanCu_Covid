@@ -1,12 +1,13 @@
 package MVC.model;
 
+
 public class NhanKhau {
 	
-	private String idNhanKhau; 
+	private int idNhanKhau; 
 	private String maCccd;
 	private String hoTen;
 	private String ngaySinh;
-	private boolean gioiTinh;
+	private String gioiTinh;
 	private String danToc;
 	private String quocTich;
 	private String tonGiao;
@@ -14,7 +15,7 @@ public class NhanKhau {
 	private String thuongTru;
 	private String ngheNghiep;
 	
-	public NhanKhau(String idNhanKhau, String maCccd, String hoTen, String ngaySinh, boolean gioiTinh, String danToc,
+	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, String gioiTinh, String danToc,
 			String quocTich, String tonGiao, String nguyenQuan, String thuongTru, String ngheNghiep) {
 		super();
 		this.idNhanKhau = idNhanKhau;
@@ -30,7 +31,7 @@ public class NhanKhau {
 		this.ngheNghiep = ngheNghiep;
 	}
 
-	public NhanKhau(String idNhanKhau, String maCccd, String hoTen, String ngaySinh, String quocTich, String nguyenQuan,
+	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, String quocTich, String nguyenQuan,
 			String thuongTru) {
 		super();
 		this.idNhanKhau = idNhanKhau;
@@ -42,11 +43,11 @@ public class NhanKhau {
 		this.thuongTru = thuongTru;
 	}
 
-	public String getIdNhanKhau() {
+	public int getIdNhanKhau() {
 		return idNhanKhau;
 	}
 
-	public void setIdNhanKhau(String idNhanKhau) {
+	public void setIdNhanKhau(int idNhanKhau) {
 		this.idNhanKhau = idNhanKhau;
 	}
 
@@ -74,11 +75,11 @@ public class NhanKhau {
 		this.ngaySinh = ngaySinh;
 	}
 
-	public boolean isGioiTinh() {
+	public String isGioiTinh() {
 		return gioiTinh;
 	}
 
-	public void setGioiTinh(boolean gioiTinh) {
+	public void setGioiTinh(String gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 
