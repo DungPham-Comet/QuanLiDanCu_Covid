@@ -2,9 +2,6 @@ package MVC.controller.khaitu;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -22,14 +19,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import MVC.controller.nhankhau.DetailNhanKhauController;
 import MVC.model.KhaiTu;
 import MVC.model.NhanKhau;
 import MVC.services.KhaiTuServices;
-import MVC.services.NhanKhauServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,7 +48,7 @@ public class KhaiTuController implements Initializable{
   private AnchorPane basePane;
   
     @FXML
-    private TableColumn<KhaiTu, Integer> indexColumn;
+    private TableColumn indexColumn;
 
 	@FXML
 	private TableColumn<KhaiTu, String> lyDoCol;
@@ -88,10 +82,6 @@ public class KhaiTuController implements Initializable{
     
 	private ObservableList<KhaiTu> khaiTuList = FXCollections.observableArrayList();
 	
-	private Connection conn;
-
-    private PreparedStatement preparedStatement = null;
-    
     private final ViewUtils viewUtils = new ViewUtils();
     
     @Override
@@ -118,8 +108,7 @@ public class KhaiTuController implements Initializable{
                     try {
 						detail(event);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						throw new RuntimeException(e);
 					}
                 }
             });
@@ -191,7 +180,25 @@ public class KhaiTuController implements Initializable{
     
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-        indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<NhanKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+        indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
+            @Override
+            public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
+                return new TableCell<KhaiTu, KhaiTu>() {
+                    @Override
+                    protected void updateItem(KhaiTu item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (this.getTableRow() != null && item != null) {
+                            setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                        } else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });
+        indexColumn.setSortable(false);
         nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
         nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
         ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
@@ -216,7 +223,9 @@ public class KhaiTuController implements Initializable{
         return tableKhaiTu;
 	}
 	
-	public void search() {
+	@SuppressWarnings("unchecked")
+	@FXML
+	void search() {
         FilteredList<KhaiTu> filteredData = new FilteredList<>(khaiTuList, p -> true);
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(khaiTu -> {
@@ -235,8 +244,25 @@ public class KhaiTuController implements Initializable{
             else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
             pagination.setMaxPageIndicatorCount(5);
             pagination.setPageFactory(pageIndex -> {
+        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<NhanKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+                indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
+                    @Override
+                    public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
+                        return new TableCell<KhaiTu, KhaiTu>() {
+                            @Override
+                            protected void updateItem(KhaiTu item, boolean empty) {
+                                super.updateItem(item, empty);
 
-                indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+                                if (this.getTableRow() != null && item != null) {
+                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                                } else {
+                                    setText("");
+                                }
+                            }
+                        };
+                    }
+                });
+                indexColumn.setSortable(false);
                 nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
                 nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
                 ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
