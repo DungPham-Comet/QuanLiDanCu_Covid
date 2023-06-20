@@ -33,6 +33,7 @@ import MVC.services.NhanKhauServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -190,7 +191,7 @@ public class KhaiTuController implements Initializable{
     
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-		indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+        indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
         nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
         nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
         ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
@@ -214,4 +215,52 @@ public class KhaiTuController implements Initializable{
         }
         return tableKhaiTu;
 	}
+	
+	public void search() {
+        FilteredList<KhaiTu> filteredData = new FilteredList<>(khaiTuList, p -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(khaiTu -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (khaiTu.getTenNguoiChet().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            int soDu = filteredData.size() % ROWS_PER_PAGE;
+            if (soDu != 0) pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
+            else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
+            pagination.setMaxPageIndicatorCount(5);
+            pagination.setPageFactory(pageIndex -> {
+
+                indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+                nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
+                nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
+                ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
+                lyDoCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("lyDoChet"));
+                ngayKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayKhai"));
+                int lastIndex = 0;
+                int displace = filteredData.size() % ROWS_PER_PAGE;
+                if (displace > 0) {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE;
+                } else {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
+                }
+                if (filteredData.isEmpty()) tableKhaiTu.setItems(FXCollections.observableArrayList(filteredData));
+                else {
+                    if (lastIndex == pageIndex && displace > 0) {
+                        tableKhaiTu.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+                    } else {
+                        tableKhaiTu.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+                    }
+                }
+                return tableKhaiTu;
+            });
+        });
+    }
+	
+	
 }
