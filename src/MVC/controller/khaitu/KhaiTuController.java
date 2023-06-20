@@ -25,11 +25,12 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import MVC.controller.nhankhau.DetailNhanKhauController;
+import MVC.controller.khaitu.DetailKhaiTuController;
 import MVC.model.KhaiTu;
-import MVC.model.NhanKhau;
+import MVC.model.KhaiTu;
+import MVC.model.KhaiTu;
 import MVC.services.KhaiTuServices;
-import MVC.services.NhanKhauServices;
+import MVC.services.KhaiTuServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,7 +55,7 @@ public class KhaiTuController implements Initializable{
   private AnchorPane basePane;
   
     @FXML
-    private TableColumn<KhaiTu, Integer> indexColumn;
+    private TableColumn indexColumn;
 
 	@FXML
 	private TableColumn<KhaiTu, String> lyDoCol;
@@ -191,7 +192,25 @@ public class KhaiTuController implements Initializable{
     
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-        indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+        indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
+            @Override
+            public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
+                return new TableCell<KhaiTu, KhaiTu>() {
+                    @Override
+                    protected void updateItem(KhaiTu item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (this.getTableRow() != null && item != null) {
+                            setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                        } else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });
+        indexColumn.setSortable(false);
         nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
         nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
         ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
@@ -234,9 +253,26 @@ public class KhaiTuController implements Initializable{
             if (soDu != 0) pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
             else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
             pagination.setMaxPageIndicatorCount(5);
-            pagination.setPageFactory(pageIndex -> {
+            pagination.setPageFactory(pageIndex->{
+        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+                indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
+                    @Override
+                    public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
+                        return new TableCell<KhaiTu, KhaiTu>() {
+                            @Override
+                            protected void updateItem(KhaiTu item, boolean empty) {
+                                super.updateItem(item, empty);
 
-                indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+                                if (this.getTableRow() != null && item != null) {
+                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                                } else {
+                                    setText("");
+                                }
+                            }
+                        };
+                    }
+                });
+                indexColumn.setSortable(false);
                 nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
                 nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
                 ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
