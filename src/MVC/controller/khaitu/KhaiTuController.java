@@ -46,7 +46,6 @@ import javafx.util.Callback;
 import static MVC.utils.Utils.*;
 import static MVC.constans.FXMLConstans.*;
 import static MVC.utils.Utils.createDialog;
-import static com.quartermanagement.Constants.DBConstants.ROWS_PER_PAGE;
 import static MVC.constans.DBConstans.*;
 
 public class KhaiTuController implements Initializable{
@@ -192,7 +191,7 @@ public class KhaiTuController implements Initializable{
     
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-		indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
+        indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
         nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
         nguoiKhaiCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiKhai"));
         ngayChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("ngayChet"));
@@ -236,24 +235,6 @@ public class KhaiTuController implements Initializable{
             else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
             pagination.setMaxPageIndicatorCount(5);
             pagination.setPageFactory(pageIndex -> {
-                indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
-                indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
-                    @Override
-                    public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
-                        return new TableCell<KhaiTu, KhaiTu>() {
-                            @Override
-                            protected void updateItem(KhaiTu item, boolean empty) {
-                                super.updateItem(item, empty);
-
-                                if (this.getTableRow() != null && item != null) {
-                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
-                                } else {
-                                    setText("");
-                                }
-                            }
-                        };
-                    }
-                });
 
                 indexColumn.setCellValueFactory(new PropertyValueFactory<KhaiTu, Integer>("idKhaiTu"));
                 nguoiChetCol.setCellValueFactory(new PropertyValueFactory<KhaiTu, String>("tenNguoiChet"));
