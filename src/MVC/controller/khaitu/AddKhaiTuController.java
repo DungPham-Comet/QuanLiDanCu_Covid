@@ -1,8 +1,11 @@
 package MVC.controller.khaitu;
 
+import static MVC.constans.FXMLConstans.KHAITU_VIEW;
+
 import java.io.IOException;
 
 import MVC.utils.ViewAddKhaiTuUtils;
+import MVC.utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Pagination;
@@ -52,8 +55,8 @@ public class AddKhaiTuController {
 
     @FXML
     void returnToKhaiTu(ActionEvent event) throws IOException {
-    	ViewAddKhaiTuUtils viewAddKhaiTuUtils = new ViewAddKhaiTuUtils();
-    	viewAddKhaiTuUtils.switchToKhaiTu_HomeView(event);
+    	ViewUtils a = new ViewUtils();
+    	a.backToView(event, KHAITU_VIEW);
     }
 
 }

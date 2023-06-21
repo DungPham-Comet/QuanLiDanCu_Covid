@@ -27,4 +27,6 @@ public class KhaiTuServices {
         preparedStatement.setInt(1, idKhaiTu);
         return preparedStatement.executeUpdate();
     }
+    
+    
 }
