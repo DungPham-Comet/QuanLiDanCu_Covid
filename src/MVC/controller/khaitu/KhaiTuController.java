@@ -2,9 +2,6 @@ package MVC.controller.khaitu;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -22,14 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import MVC.controller.khaitu.DetailKhaiTuController;
 import MVC.model.KhaiTu;
-import MVC.model.KhaiTu;
-import MVC.model.KhaiTu;
-import MVC.services.KhaiTuServices;
 import MVC.services.KhaiTuServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
@@ -89,10 +81,6 @@ public class KhaiTuController implements Initializable{
     
 	private ObservableList<KhaiTu> khaiTuList = FXCollections.observableArrayList();
 	
-	private Connection conn;
-
-    private PreparedStatement preparedStatement = null;
-    
     private final ViewUtils viewUtils = new ViewUtils();
     
     @Override
@@ -119,8 +107,7 @@ public class KhaiTuController implements Initializable{
                     try {
 						detail(event);
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						throw new RuntimeException(e);
 					}
                 }
             });
@@ -235,7 +222,9 @@ public class KhaiTuController implements Initializable{
         return tableKhaiTu;
 	}
 	
-	public void search() {
+	@SuppressWarnings("unchecked")
+	@FXML
+	void search() {
         FilteredList<KhaiTu> filteredData = new FilteredList<>(khaiTuList, p -> true);
         searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(khaiTu -> {
@@ -253,7 +242,7 @@ public class KhaiTuController implements Initializable{
             if (soDu != 0) pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
             else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
             pagination.setMaxPageIndicatorCount(5);
-            pagination.setPageFactory(pageIndex->{
+            pagination.setPageFactory(pageIndex -> {
         		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
                 indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
                     @Override
