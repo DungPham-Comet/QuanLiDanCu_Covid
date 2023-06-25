@@ -22,14 +22,14 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="214.0" maxPageIndicatorCount="3" prefHeight="389.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="180.0" prefHeight="359.0" prefWidth="610.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="176.0" maxPageIndicatorCount="3" prefHeight="428.0" prefWidth="634.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="180.0" prefHeight="359.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="41.599971771240234" text="#" />
-            <TableColumn fx:id="maHoKhauColumn" prefWidth="101.5999755859375" text="Mã hộ khẩu" />
-            <TableColumn fx:id="diaChiColumn" prefWidth="168.00001525878906" text="Địa chỉ" />
-            <TableColumn fx:id="tenChuHoColumn" prefWidth="136.800048828125" text="Tên Chủ Hộ" />
-            <TableColumn fx:id="soLuongColumn" prefWidth="165.5999755859375" text="Số lượng thành viên" />
+            <TableColumn fx:id="maHoKhauColumn" prefWidth="92.7999267578125" text="Mã hộ khẩu" />
+            <TableColumn fx:id="diaChiColumn" prefWidth="192.80006408691406" text="Địa chỉ" />
+            <TableColumn fx:id="tenChuHoColumn" prefWidth="141.60003662109375" text="Tên Chủ Hộ" />
+            <TableColumn fx:id="soLuongColumn" prefWidth="164.79998779296875" text="Số lượng thành viên" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="38.0" layoutY="78.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
