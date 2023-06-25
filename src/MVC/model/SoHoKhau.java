@@ -4,18 +4,35 @@ public class SoHoKhau {
 	private int idHoKhau;
 	private String ngayTao;
 	private String diaChi;
-	private int idChuHo;
+	private String tenChuHo;
+	private int soThanhVen;
 	
-	public SoHoKhau(int idHoKhau, String ngayTao, String diaChi, int idChuHo) {
-		super();
-		this.idHoKhau = idHoKhau;
-		this.ngayTao = ngayTao;
-		this.diaChi = diaChi;
-		this.idChuHo = idChuHo;
-	}
-
 	public int getIdHoKhau() {
 		return idHoKhau;
+	}
+
+	public SoHoKhau(int idHoKhau, String diaChi, String tenChuHo, int soThanhVen) {
+		super();
+		this.idHoKhau = idHoKhau;
+		this.diaChi = diaChi;
+		this.tenChuHo = tenChuHo;
+		this.soThanhVen = soThanhVen;
+	}
+
+	public String getTenChuHo() {
+		return tenChuHo;
+	}
+
+	public void setTenChuHo(String tenChuHo) {
+		this.tenChuHo = tenChuHo;
+	}
+
+	public int getSoThanhVen() {
+		return soThanhVen;
+	}
+
+	public void setSoThanhVen(int soThanhVen) {
+		this.soThanhVen = soThanhVen;
 	}
 
 	public void setIdHoKhau(int idHoKhau) {
@@ -36,14 +53,6 @@ public class SoHoKhau {
 
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
-	}
-
-	public int getIdChuHo() {
-		return idChuHo;
-	}
-
-	public void setIdChuHo(int idChuHo) {
-		this.idChuHo = idChuHo;
 	}
 	
 	

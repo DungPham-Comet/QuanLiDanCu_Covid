@@ -30,6 +30,14 @@ public class NhanKhau {
 		this.ngheNghiep = ngheNghiep;
 	}
 
+	
+	
+	public NhanKhau() {
+		super();
+	}
+
+
+
 	public NhanKhau(int idNhanKhau, String maCccd, String hoTen, String ngaySinh, String quocTich, String nguyenQuan,
 			String thuongTru) {
 		super();

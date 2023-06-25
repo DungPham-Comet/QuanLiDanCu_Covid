@@ -98,7 +98,7 @@ public class AddNhanKhauController implements Initializable {
     							Alert.AlertType.CONFIRMATION,
                                 "Thành công",
                                 "", "Đồng chí vất vả rồi!");
-    					viewUtils.backToView(event, ngheNghiep);
+    					viewUtils.backToView(event, NHANKHAU_VIEW);
     				}
     				else {
     					createDialog(
