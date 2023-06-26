@@ -22,7 +22,6 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
 import MVC.model.KhaiTu;
-import MVC.model.NhanKhau;
 import MVC.services.KhaiTuServices;
 import MVC.utils.ViewUtils;
 import javafx.collections.FXCollections;
@@ -130,6 +129,8 @@ public class KhaiTuController implements Initializable{
             Scene scene = new Scene(studentViewParent);
             DetailKhaiTuController controller = loader.getController();
             controller.setKhaiTu(selected);
+            controller.setIdKhaiTu(selected.getIdKhaiTu());
+            //System.out.println("ID: " + selected.getIdKhaiTu());
             stage.setScene(scene);
     	}
 		
@@ -180,7 +181,7 @@ public class KhaiTuController implements Initializable{
     
 	@SuppressWarnings("unchecked")
 	public Node createTableView(Integer pageIndex) {
-		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<NhanKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
         indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
             @Override
             public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {
@@ -244,7 +245,7 @@ public class KhaiTuController implements Initializable{
             else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
             pagination.setMaxPageIndicatorCount(5);
             pagination.setPageFactory(pageIndex -> {
-        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<NhanKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<KhaiTu, KhaiTu>, ObservableValue<KhaiTu>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
                 indexColumn.setCellFactory(new Callback<TableColumn<KhaiTu, KhaiTu>, TableCell<KhaiTu, KhaiTu>>() {
                     @Override
                     public TableCell<KhaiTu, KhaiTu> call(TableColumn<KhaiTu, KhaiTu> param) {

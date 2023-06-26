@@ -27,4 +27,30 @@ public class KhaiTuServices {
         preparedStatement.setInt(1, idKhaiTu);
         return preparedStatement.executeUpdate();
     }
+    
+    public static int updateKhaiTu(Connection conn, String lyDoChet, 
+            String ngayChet, String ngayKhai, int idKhaiTu) throws SQLException {
+        	String UPDATE_QUERY = "UPDATE `khaitu` SET `NgayChet`= ?, `NgayKhai` = ?, `LyDoChet` = ?" +
+    				"WHERE `IdKhaiTu`=?";
+        	PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY);
+        	preparedStatement.setString(1, ngayChet);
+        	preparedStatement.setString(2, ngayKhai);
+        	preparedStatement.setString(3, lyDoChet);
+        	preparedStatement.setInt(4, idKhaiTu);
+        	preparedStatement.execute();
+        	return preparedStatement.executeUpdate();
+        }
+    
+    public static int addKhaiTu(Connection conn, int idNguoiChet, int idNguoiKhai, String lyDoChet, String ngayChet, String ngayKhai) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO khaitu (NgayChet, LyDoChet, NgayKhai, IdNguoiChet, IdNguoiKhai) VALUES (?, ?, ?, ?, ?);";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setString(1, ngayChet);
+    	preparedStatement.setString(2, lyDoChet);
+    	preparedStatement.setString(3, ngayKhai);
+    	preparedStatement.setInt(4, idNguoiChet);
+    	preparedStatement.setInt(5, idNguoiKhai);
+    	return preparedStatement.executeUpdate();
+    }
+    
+    
 }
