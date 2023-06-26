@@ -26,10 +26,10 @@
       <TableView fx:id="tableView" layoutX="38.0" layoutY="180.0" prefHeight="359.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="41.599971771240234" text="#" />
-            <TableColumn fx:id="maHoKhauColumn" prefWidth="92.7999267578125" text="Mã hộ khẩu" />
-            <TableColumn fx:id="diaChiColumn" prefWidth="192.80006408691406" text="Địa chỉ" />
             <TableColumn fx:id="tenChuHoColumn" prefWidth="141.60003662109375" text="Tên Chủ Hộ" />
-            <TableColumn fx:id="soLuongColumn" prefWidth="164.79998779296875" text="Số lượng thành viên" />
+            <TableColumn fx:id="ngayTaoColumn" prefWidth="121.60005187988281" text="Ngày Tạo" />
+            <TableColumn fx:id="diaChiColumn" prefWidth="230.39996337890625" text="Địa chỉ" />
+            <TableColumn fx:id="soLuongColumn" prefWidth="101.5999755859375" text="Số thành viên" />
          </columns>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="38.0" layoutY="78.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class HoKhauServices {
     public static ResultSet getAllHoKhau() throws SQLException {
         // Connecting Database
-        String SELECT_QUERY = "SELECT sohokhau.IdHoKhau, sohokhau.DiaChi, nhankhau.HoTen, COUNT(thanhvienho.IdNhanKhau) AS SoThanhVien\r\n"
+        String SELECT_QUERY = "SELECT sohokhau.IdHoKhau, sohokhau.DiaChi, sohokhau.NgayTao, nhankhau.HoTen, COUNT(thanhvienho.IdNhanKhau) AS SoThanhVien\r\n"
         		+ "FROM sohokhau, nhankhau, thanhvienho\r\n"
         		+ "WHERE sohokhau.IdHoKhau = thanhvienho.IdHoKhau AND sohokhau.IdChuHo = nhankhau.IdNhanKhau\r\n"
         		+ "GROUP BY (thanhvienho.IdHoKhau);";
@@ -48,6 +48,35 @@ public class HoKhauServices {
     	}
     	return hokhauid;
     }
+    
+    public static ResultSet getAllThanhVien(int idHoKhau) throws SQLException {
+    	String SELECT_QUERY = "SELECT nhankhau.IdNhanKhau, nhankhau.HoTen, nhankhau.MaCccd, thanhvienho.QuanHeChuHo\r\n"
+    			+ "FROM nhankhau, thanhvienho\r\n"
+    			+ "WHERE nhankhau.IdNhanKhau = thanhvienho.IdNhanKhau AND thanhvienho.IdHoKhau = ?";
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, idHoKhau);
+        return preparedStatement.executeQuery();
+    }
+    
+    public static int deleteThanhVien(int idNhanKhau) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String DELETE_QUERY = "DELETE FROM thanhvienho WHERE IdNhanKhau = ?";
+        preparedStatement = conn.prepareStatement(DELETE_QUERY);
+        preparedStatement.setInt(1, idNhanKhau);
+        return preparedStatement.executeUpdate();
+    }
+    
+    public static int deleteHoKhau(int idHoKhau) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String DELETE_QUERY = "DELETE FROM sohokhau WHERE IdHoKhau = ?";
+        preparedStatement = conn.prepareStatement(DELETE_QUERY);
+        preparedStatement.setInt(1, idHoKhau);
+        return preparedStatement.executeUpdate();
+    }
+    
     public static void main(String[] args) throws SQLException {
     	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
     	System.out.println(getHoKhauByChuHo(conn, 9));

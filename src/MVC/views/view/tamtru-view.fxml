@@ -11,14 +11,14 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.tamtru.TamTruController">
    <children>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="219.0" maxPageIndicatorCount="3" prefHeight="384.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="125.0" prefHeight="414.0" prefWidth="613.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="145.0" maxPageIndicatorCount="3" prefHeight="440.0" prefWidth="634.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="145.0" prefHeight="384.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="41.599971771240234" text="#" />
-            <TableColumn fx:id="maHoKhauColumn" prefWidth="131.99993896484375" text="Tên người TT" />
-            <TableColumn fx:id="diaChiColumn" prefWidth="158.40003967285156" text="Ngày bắt đầu" />
-            <TableColumn fx:id="tenChuHoColumn" prefWidth="118.39996337890625" text="Ngày kết thúc" />
-            <TableColumn fx:id="soLuongColumn" prefWidth="165.5999755859375" text="Hộ khẩu" />
+            <TableColumn fx:id="tenTamTruColumn" prefWidth="131.99993896484375" text="Tên người TT" />
+            <TableColumn fx:id="ngayBatDauColumn" prefWidth="158.40003967285156" text="Ngày bắt đầu" />
+            <TableColumn fx:id="ngayKetThucColumn" prefWidth="166.4000244140625" text="Ngày kết thúc" />
+            <TableColumn fx:id="tenChuHoColumn" prefWidth="134.39990234375" text="Hộ khẩu" />
          </columns>
       </TableView>
       <Button layoutX="460.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">

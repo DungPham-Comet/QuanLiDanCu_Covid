@@ -1,13 +1,37 @@
 package MVC.controller.hokhau;
 
+import static MVC.constans.FXMLConstans.*;
+import static MVC.utils.Utils.createDialog;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import MVC.controller.nhankhau.ChonNhanKhauController;
+import MVC.model.SoHoKhau;
+import MVC.model.ThanhVienCuaHo;
+import MVC.services.HoKhauServices;
+import MVC.services.NhanKhauServices;
+import MVC.utils.ViewUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DetailHoKhauController {
 
@@ -18,10 +42,7 @@ public class DetailHoKhauController {
     private AnchorPane basePane;
 
     @FXML
-    private TableColumn<?, ?> cccdColumn;
-
-    @FXML
-    private Text cccdLabel;
+    private TableColumn<ThanhVienCuaHo, String> cccdColumn;
 
     @FXML
     private Button deleteThanhVienBtn;
@@ -33,10 +54,7 @@ public class DetailHoKhauController {
     private Button doiChuHoBtn;
 
     @FXML
-    private TableColumn<?, ?> hoTenColumn;
-
-    @FXML
-    private TextField maChuHoTextField;
+    private TableColumn<ThanhVienCuaHo, String> hoTenColumn;
 
     @FXML
     private Text maHoKhauLabel;
@@ -51,7 +69,7 @@ public class DetailHoKhauController {
     private TextField ngayTaoTextField;
 
     @FXML
-    private TableColumn<?, ?> quanHeColumn;
+    private TableColumn<ThanhVienCuaHo, String> quanHeColumn;
 
     @FXML
     private Text tenChuHoLabel;
@@ -60,7 +78,7 @@ public class DetailHoKhauController {
     private TextField tenChuHoTextField;
 
     @FXML
-    private TableView<?> thanhVienTable;
+    private TableView<ThanhVienCuaHo> thanhVienTable;
 
     @FXML
     private Text title;
@@ -70,15 +88,90 @@ public class DetailHoKhauController {
 
     @FXML
     private Button update_btn;
+    
+    private int id;
+    
+    public int getId() {
+    	return this.id;
+    }
+    
+    public void setId(int id) {
+    	this.id = id;
+    }
+    
+    private ObservableList<ThanhVienCuaHo> thanhVienList = FXCollections.observableArrayList();
+    
+    private SoHoKhau hoKhau;
+    
+    public void setHoKhau(SoHoKhau hoKhau) {
+    	this.hoKhau = hoKhau;
+    	maHoKhauTextField.setText(""+hoKhau.getIdHoKhau());
+    	ngayTaoTextField.setText(hoKhau.getNgayTao());
+    	diaChiTextField.setText(hoKhau.getDiaChi());
+    	tenChuHoTextField.setText(hoKhau.getTenChuHo());
+		try {
+			ResultSet result = HoKhauServices.getAllThanhVien(hoKhau.getIdHoKhau());
+			while(result.next()) {
+				thanhVienList.add(new ThanhVienCuaHo(result.getInt("IdNhanKhau"), result.getString("HoTen"), result.getString("MaCccd"), result.getString("QuanHeChuHo")));
+			}
+			thanhVienTable.setItems(FXCollections.observableArrayList(thanhVienList));
+			hoTenColumn.setCellValueFactory(new PropertyValueFactory<ThanhVienCuaHo, String>("hoTen"));
+			cccdColumn.setCellValueFactory(new PropertyValueFactory<ThanhVienCuaHo, String>("cccd"));
+			quanHeColumn.setCellValueFactory(new PropertyValueFactory<ThanhVienCuaHo, String>("quanHeChuHo"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 
     @FXML
-    void addthanhvien(ActionEvent event) {
-
+    void addthanhvien(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(ADD_THANHVIEN_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        AddThanhVienController controller = loader.getController();
+        controller.setHoKhau(hoKhau);
+        stage.setScene(scene);
     }
 
     @FXML
     void deletethanhvien(ActionEvent event) {
-
+    	ThanhVienCuaHo selected = thanhVienTable.getSelectionModel().getSelectedItem();
+        if (selected == null) createDialog(Alert.AlertType.WARNING,
+                "Cảnh báo",
+                "Vui lòng chọn nhân khẩu để tiếp tục", "");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận xóa nhân khẩu");
+            alert.setContentText("Đồng chí muốn xóa nhân khẩu này?");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    // Delete in Database
+                    try {
+                        int idNhanKhau = selected.getIdNhanKhau();
+                        int result1 = HoKhauServices.deleteThanhVien(idNhanKhau);
+                        if (result1 == 1) createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource(DETAIL_HOKHAU_VIEW));
+                        Parent studentViewParent = loader.load();
+                        Scene scene = new Scene(studentViewParent);
+                        DetailHoKhauController controller = loader.getController();
+                        controller.setHoKhau(hoKhau);
+                        stage.setScene(scene);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     @FXML
@@ -87,8 +180,9 @@ public class DetailHoKhauController {
     }
 
     @FXML
-    void goBack(ActionEvent event) {
-
+    void goBack(ActionEvent event) throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+    	viewUtils.backToView(event, HOKHAU_VIEW);
     }
 
     @FXML

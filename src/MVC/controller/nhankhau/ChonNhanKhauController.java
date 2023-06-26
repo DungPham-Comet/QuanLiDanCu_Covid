@@ -16,15 +16,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
-
-import static MVC.constans.FXMLConstans.*;
 import static MVC.utils.Utils.*;
 
 import java.io.IOException;
@@ -86,7 +82,15 @@ public class ChonNhanKhauController implements Initializable {
     
     private final ViewUtils viewUtils = new ViewUtils();
 
-    public static NhanKhau selectedNhanKhau = new NhanKhau();
+    private static NhanKhau selectedNhanKhau = new NhanKhau();
+    
+    public static NhanKhau getSelectedNhanKhau() {
+		return selectedNhanKhau;
+    }
+    
+    public static void DeleteSelectedNhanKhau() {
+    	selectedNhanKhau = new NhanKhau();
+    }
     
     private String previousPage;
     
@@ -199,7 +203,7 @@ public class ChonNhanKhauController implements Initializable {
         if (soDu != 0) pagination.setPageCount(nhanKhauList.size() / ROWS_PER_PAGE + 1);
         else pagination.setPageCount(nhanKhauList.size() / ROWS_PER_PAGE);
         pagination.setMaxPageIndicatorCount(5);
-        pagination.setPageFactory(this::createTableView);	
+        pagination.setPageFactory(this::createTableView);
 	}
 	@SuppressWarnings("unchecked")
 	public Node createTableView(int pageIndex) {
@@ -249,5 +253,9 @@ public class ChonNhanKhauController implements Initializable {
         }
 		return tableView;
 	}
-
+	
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+    	viewUtils.changeScene(event, previousPage);
+    }
 }

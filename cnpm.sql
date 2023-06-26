@@ -17,7 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema cnpm2023
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `cnpm2023` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `cnpm2023` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 USE `cnpm2023` ;
 
 -- -----------------------------------------------------
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`NhanKhau` (
   PRIMARY KEY (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 -- insert NhanKhau -- 
 INSERT INTO `nhankhau` (`IdNhanKhau`, `HoTen`, `DOB`, `NgheNghiep`, `DanToc`, `TonGiao`, `QuocTich`, `GioiTinh`, `MaCccd`, `NguyenQuan`, `ThuongTru`) VALUES 
@@ -98,13 +98,12 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`CCCD` (
   `DacDiem` VARCHAR(50) NULL DEFAULT NULL,
   `IdNhanKhau` int NULL DEFAULT NULL,
   PRIMARY KEY (`IdCccd`),
---   INDEX `IdNhanKhau` (`IdNhanKhau` ASC) VISIBLE,
   CONSTRAINT `CCCD_ibfk_1`
     FOREIGN KEY (`IdNhanKhau`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 INSERT INTO `CCCD` (`IdCccd`, `NgayCap`, `NoiCap`, `NgayHetHan`, `DacDiem`,`IdNhanKhau`) VALUES
 ('030202001234', '2020-01-02', 'Công an tỉnh Bắc Giang', '2026-03-02', 'nốt ruồi cạnh mắt trái', 001),
@@ -184,13 +183,12 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`SoHoKhau` (
   `DiaChi` VARCHAR(70) NULL,
   `IdChuHo` int NOT NULL,
   PRIMARY KEY (`IdHoKhau`),
-  INDEX `IdChuHo` (`IdChuHo` ASC) VISIBLE,
   CONSTRAINT `SoHoKhau_ibfk_1`
     FOREIGN KEY (`IdChuHo`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert SoHoKhau
 INSERT INTO `SoHoKhau` (`IdHoKhau`, `NgayTao`, `IdChuHo`, `DiaChi`) VALUES
 (1, '2001-03-01', 1, '10 Lê Thanh Nghị, Bách Khoa, Hai Bà Trưng'),
@@ -213,8 +211,6 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`ThanhVienHo` (
   `IdHoKhau` int NOT NULL,
   `QuanHeChuHo` VARCHAR(50) NULL,
   PRIMARY KEY (`IdNhanKhau`,`IdHoKhau`),
-  INDEX `IdNhanKhau` (`IdNhanKhau` ASC) VISIBLE,
-  INDEX `IdHoKhau` (`IdHoKhau` ASC) VISIBLE,
   CONSTRAINT `ThanhVienHo_ibfk_1`
     FOREIGN KEY (`IdNhanKhau`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`),
@@ -223,53 +219,8 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`ThanhVienHo` (
     REFERENCES `cnpm2023`.`SoHoKhau` (`IdHoKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert ThanhVienHo
-INSERT INTO `ThanhVienHo` (`IdHoKhau`, `IdNhanKhau`, `QuanHeChuHo`) VALUES
-(1, 001, 'chủ hộ'),
-(1, 002, 'vợ'),
-(1, 003, 'con'),
-(1, 004, 'con'),
-(2, 005, 'chủ hộ'),
-(2, 006, 'vợ'),
-(2, 007, 'con'),
-(2, 008, 'con'),
-(3, 009, 'chủ hộ'),
-(3, 010, 'vợ'),
-(3, 011, 'con'),
-(3, 012, 'con'),
-(4, 013, 'chủ hộ'),
-(4, 014, 'vợ'),
-(4, 015, 'con'),
-(4, 016, 'con'),
-(5, 017, 'chủ hộ'),
-(5, 018, 'vợ'),
-(5, 019, 'con'),
-(5, 020, 'con'),
-(6, 021, 'chủ hộ'),
-(6, 022, 'vợ'),
-(6, 023, 'con'),
-(7, 024, 'chủ hộ'),
-(7, 025, 'vợ'),
-(7, 026, 'con'),
-(8, 027, 'chủ hộ'),
-(8, 028, 'vợ'),
-(8, 029, 'con'),
-(8, 030, 'con'),
-(8, 031, 'con'),
-(9, 032, 'chủ hộ'),
-(9, 033, 'vợ'),
-(9, 034, 'con'),
-(10, 035, 'chủ hộ'),
-(10, 036, 'vợ'),
-(10, 037, 'con'),
-(10, 038, 'con'),
-(11, 039, 'chủ hộ'),
-(11, 040, 'vợ'),
-(1, 041, 'thuê trọ'),
-(1, 042, 'thuê trọ'),
-(3, 043, 'thuê trọ'),
-(5, 044, 'thuê trọ');
 
 
 -- -----------------------------------------------------
@@ -282,22 +233,14 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`CachLy` (
   `DiaDiem` VARCHAR(50) NULL DEFAULT NULL,
   `IdNguoiCachLy` int NULL,
   PRIMARY KEY (`IdCachLy`),
-  INDEX `IdNguoiCachLy` (`IdNguoiCachLy` ASC) VISIBLE,
   CONSTRAINT `CachLy_ibfk_1`
     FOREIGN KEY (`IdNguoiCachLy`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 -- insert CachLy
-INSERT INTO `CachLy` (`IdCachLy`, `ThoiGian`, `MucDo`, `DiaDiem`, `IdNguoiCachLy`) VALUES
-(1, '2023-11-06', 'F1', 'tại nhà', 011),
-(2, '2023-04-06', 'F2', 'trung tâm y tế phường Bách Khoa', 025),
-(3, '2023-06-15', 'F1', 'trung tâm y tế phường Bách Khoa', 006),
-(4, '2023-04-15', 'F0', 'bệnh viện Bạch Mai', 038),
-(5, '2023-03-07', 'F1',	'tại nhà', 020),
-(6, '2023-04-04', 'F1', 'trung tâm y tế phường Bách Khoa', 040);
 
 -- -----------------------------------------------------
 -- Table `cnpm2023`.`LichTrinh`
@@ -307,13 +250,12 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`LichTrinh` (
   `IdNguoiKhai` int NOT NULL,
   `TenLichTrinh` VARCHAR(50) NULL,
   PRIMARY KEY (`IdLichTrinh`),
-  INDEX `IdNguoiKhai` (`IdNguoiKhai` ASC) VISIBLE,
   CONSTRAINT `LichTrinh_ibfk_1`
     FOREIGN KEY (`IdNguoiKhai`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert LichTrinh
 INSERT INTO `LichTrinh` (`IdLichTrinh`, `IdNguoiKhai`,`TenLichTrinh`) VALUES
 (11, 011, 'Hà Nội - Hải Phòng'),	
@@ -331,13 +273,12 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`ThongTinDiChuyen` (
   `DiaDiem` VARCHAR(50) NULL DEFAULT NULL,
   `IdLichTrinh` int NOT NULL,
   PRIMARY KEY (`IdThongTin`),
-  INDEX `IdLichTrinh` (`IdLichTrinh` ASC) VISIBLE,
   CONSTRAINT `ThongTinDiChuyen_ibfk_1`
     FOREIGN KEY (`IdLichTrinh`)
     REFERENCES `cnpm2023`.`LichTrinh` (`IdLichTrinh`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert ThongTinDiChuyen
 INSERT INTO `ThongTinDiChuyen` (`IdThongTin`, `PhuongTien`, `ThoiGian`, `DiaDiem`, `IdLichTrinh`) VALUES
 
@@ -362,8 +303,6 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`TamTru` (
   `IdNguoiTamTru` int NULL DEFAULT NULL,
   `IdHoKhau` int NULL DEFAULT NULL,
   PRIMARY KEY (`IdTamTru`),
-  INDEX `IdNguoiTamTru` (`IdNguoiTamTru` ASC) VISIBLE,
-  INDEX `IdHoKhau` (`IdHoKhau` ASC) VISIBLE,
   CONSTRAINT `TamTru_ibfk_1`
     FOREIGN KEY (`IdNguoiTamTru`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`),
@@ -372,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`TamTru` (
     REFERENCES `cnpm2023`.`SoHoKhau` (`IdHoKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert tamtru
 INSERT INTO `TamTru` (`IdTamTru`, `NgayTao`, `NgayKetThuc`, `IdNguoiTamTru`, `IdHoKhau`) VALUES
 (1, '2022-02-03', '2024-02-03',	041, 1),
@@ -390,13 +329,12 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`TamVang` (
   `NgayKetThuc` DATE NULL DEFAULT NULL,
   `IdNguoiTamVang` int NOT NULL,
   PRIMARY KEY (`IdTamVang`),
-  INDEX `IdNguoiTamVang` (`IdNguoiTamVang` ASC) VISIBLE,
   CONSTRAINT `temporarilyabsent_ibfk_1`
     FOREIGN KEY (`IdNguoiTamVang`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert TamVang
 INSERT INTO `TamVang` (`IdTamVang`, `NgayTao`, `NgayKetThuc`, `IdNguoiTamVang`) VALUES
 (1, '2023-02-02', '2024-02-02',	003),
@@ -415,23 +353,15 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`XetNghiem` (
   `KetQua` VARCHAR(50) NULL DEFAULT NULL,
   `IdNguoiXetNghiem` int NULL DEFAULT NULL,
   PRIMARY KEY (`IdXetNghiem`),
-  INDEX `IdNguoiXetNghiem` (`IdNguoiXetNghiem` ASC) VISIBLE,
   CONSTRAINT `XetNghiem_ibfk_1`
     FOREIGN KEY (`IdNguoiXetNghiem`)
     REFERENCES `cnpm2023`.`NhanKhau` (`IdNhanKhau`)
 )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 -- insert Xetnghiem
-INSERT INTO `XetNghiem` (`IdXetNghiem`, `HinhThuc`, `ThoiGian`, `KetQua`, `IdNguoiXetNghiem`) VALUES
-(1, 'Test Nhanh', '2023-06-11 14:22:43', 'TRUE', 11),
-(2, 'PCR', '2023-06-04 20:00:00', 'TRUE', 25),
-(3, 'PCR', '2023-06-15 08:15:50', 'TRUE', 6),
-(4, 'Test Nhanh', '2023-05-14 10:00:20', 'TRUE', 38),
-(5, 'Test Nhanh', '2023-07-03 23:30:00', 'FALSE', 20),
-(6, 'Test Nhanh', '2023-04-04 20:15:10', 'FALSE', 40);
 
 
 -- -----------------------------------------------------
@@ -445,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`user` (
   PRIMARY KEY (`userId`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 -- insert User
 INSERT INTO `User` (`userId`, `username`, `password`, `role`) VALUES
 (11, 'phamtrungdung', 'dung12345', 1),
