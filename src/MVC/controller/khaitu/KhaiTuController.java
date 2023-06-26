@@ -129,6 +129,8 @@ public class KhaiTuController implements Initializable{
             Scene scene = new Scene(studentViewParent);
             DetailKhaiTuController controller = loader.getController();
             controller.setKhaiTu(selected);
+            controller.setIdKhaiTu(selected.getIdKhaiTu());
+            //System.out.println("ID: " + selected.getIdKhaiTu());
             stage.setScene(scene);
     	}
 		
