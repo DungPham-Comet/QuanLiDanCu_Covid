@@ -106,6 +106,7 @@ public class ChonNhanKhauController implements Initializable {
     		viewUtils.changeScene(event, previousPage);
     	}
     }
+    
 
     @SuppressWarnings("unchecked")
 	@FXML
