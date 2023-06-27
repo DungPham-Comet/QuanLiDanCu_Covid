@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
 
 import static MVC.constans.DBConstans.*;
 
-public class ChonNhanKhauController implements Initializable {
+public class ChonNhanKhauController2 implements Initializable {
 
     @FXML
     private AnchorPane basePane;

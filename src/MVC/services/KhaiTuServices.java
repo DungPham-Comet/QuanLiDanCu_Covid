@@ -41,5 +41,16 @@ public class KhaiTuServices {
         	return preparedStatement.executeUpdate();
         }
     
+    public static int addKhaiTu(Connection conn, int idNguoiChet, int idNguoiKhai, String lyDoChet, String ngayChet, String ngayKhai) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO khaitu (NgayChet, LyDoChet, NgayKhai, IdNguoiChet, IdNguoiKhai) VALUES (?, ?, ?, ?, ?);";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setString(1, ngayChet);
+    	preparedStatement.setString(2, lyDoChet);
+    	preparedStatement.setString(3, ngayKhai);
+    	preparedStatement.setInt(4, idNguoiChet);
+    	preparedStatement.setInt(5, idNguoiKhai);
+    	return preparedStatement.executeUpdate();
+    }
+    
     
 }
