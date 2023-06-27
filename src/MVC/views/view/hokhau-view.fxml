@@ -7,17 +7,18 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.hokhau.HoKhauController">
    <children>
-      <Button layoutX="467.0" layoutY="137.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button layoutX="489.0" layoutY="137.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="589.0" layoutY="137.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
+      <Button layoutX="613.0" layoutY="137.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -37,8 +38,11 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <RadioButton layoutX="38.0" layoutY="133.0" mnemonicParsing="false" text="Địa chỉ" />
-      <RadioButton layoutX="119.0" layoutY="133.0" mnemonicParsing="false" text="Tên chủ hộ" />
+      <RadioButton fx:id="diaChiFilterBtn" layoutX="38.0" layoutY="133.0" mnemonicParsing="false" selected="true" text="Địa chỉ">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="tenChuHoFilterBtn" layoutX="119.0" layoutY="133.0" mnemonicParsing="false" text="Tên chủ hộ" toggleGroup="$group" />
       <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="29.0" prefHeight="35.0" prefWidth="95.0" text="Hộ khẩu">
          <font>
             <Font size="24.0" />

@@ -61,7 +61,6 @@ public class AddKhaiTuController implements Initializable{
     @FXML
     private Button returnToKhaiTuButton;
     
-    private NhanKhau nguoiChet = ChonNhanKhauController.selectedNhanKhau;
    
     @FXML
     void chonNguoiChet(ActionEvent event) throws IOException {
@@ -75,7 +74,6 @@ public class AddKhaiTuController implements Initializable{
         stage.setScene(scene);
     }
     
-    private NhanKhau nguoiKhai = ChonNhanKhauController.selectedNhanKhau2;
 
     @FXML
     void chonNguoiKhai(ActionEvent event) throws IOException {
@@ -91,40 +89,7 @@ public class AddKhaiTuController implements Initializable{
     
     @FXML
     void addKhaiTu(ActionEvent event) throws IOException {
-    	ViewUtils viewUtils = new ViewUtils();
-    	String tenNguoiChet = tenNguoiChetTextField.getText();
-    	String tenNguoiKhai = tenNguoiKhaiTextField.getText();
-    	String lyDoChet = lyDoChetTextField.getText();
-    	String ngayChet = ngayChetDatePicker.getValue().toString();
-    	String ngayKhai = ngayKhaiDatePicker.getValue().toString();
-    	if(tenNguoiChet.trim().equals("") || tenNguoiKhai.trim().equals("") || lyDoChet.trim().equals("")) {
-			createDialog(
-					Alert.AlertType.WARNING,
-                    "Đồng chí giữ bình tĩnh",
-                    "", "Vui lòng nhập đủ thông tin!");
-    	}
-    	else {
-    		try {
-    			Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-    			int result = KhaiTuServices.addKhaiTu(conn, nguoiChet.getIdNhanKhau(), nguoiKhai.getIdNhanKhau(), lyDoChet, ngayChet, ngayKhai);
-    			if(result == 1) {
-					createDialog(
-							Alert.AlertType.CONFIRMATION,
-                            "Thành công",
-                            "", "Đồng chí vất vả rồi!");
-					viewUtils.backToView(event, KHAITU_VIEW);
-    			}
-    			else {
-					createDialog(
-							Alert.AlertType.ERROR,
-                            "Thất bại",
-                            "", "Oops, mời đồng chí nhập lại thông tin!");
-				}
-				conn.close();
-			} catch (SQLException e) {
-				// TODO: handle exception
-			}
-    	}
+
     }
 
     @FXML
@@ -135,8 +100,6 @@ public class AddKhaiTuController implements Initializable{
     
     @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		tenNguoiChetTextField.setText(nguoiChet.getHoTen());
-		tenNguoiKhaiTextField.setText(nguoiKhai.getHoTen());
 	}
 
 }

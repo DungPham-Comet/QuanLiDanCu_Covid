@@ -19,6 +19,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,11 +31,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -69,6 +72,15 @@ public class HoKhauController implements Initializable {
 
     @FXML
     private TableColumn<SoHoKhau, String> tenChuHoColumn;
+    
+    @FXML
+    private ToggleGroup group;
+    
+    @FXML
+    private RadioButton diaChiFilterBtn;
+    
+    @FXML
+    private RadioButton tenChuHoFilterBtn;
     
     private ObservableList<SoHoKhau> hoKhauList = FXCollections.observableArrayList();
     
@@ -114,9 +126,75 @@ public class HoKhauController implements Initializable {
             }
         }
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void search(MouseEvent event) {
+    	FilteredList<SoHoKhau> filteredData = new FilteredList<>(hoKhauList, p -> true);
+    	searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(person -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = searchTextField.getText().toLowerCase();
+                String filterType = "";
+                if(diaChiFilterBtn.isSelected()) {
+                		filterType = person.getDiaChi().toLowerCase();
+                }
+                else if(tenChuHoFilterBtn.isSelected()) {
+                	filterType = person.getTenChuHo().toLowerCase();
+                }
+                if (filterType.contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            int soDu = filteredData.size() % ROWS_PER_PAGE;
+            if (soDu != 0) pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
+            else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
+            pagination.setMaxPageIndicatorCount(5);
+            pagination.setPageFactory(pageIndex ->{
+        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<SoHoKhau, SoHoKhau>, ObservableValue<SoHoKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+                indexColumn.setCellFactory(new Callback<TableColumn<SoHoKhau, SoHoKhau>, TableCell<SoHoKhau, SoHoKhau>>() {
+                    @Override
+                    public TableCell<SoHoKhau, SoHoKhau> call(TableColumn<SoHoKhau, SoHoKhau> param) {
+                        return new TableCell<SoHoKhau, SoHoKhau>() {
+                            @Override
+                            protected void updateItem(SoHoKhau item, boolean empty) {
+                                super.updateItem(item, empty);
 
+                                if (this.getTableRow() != null && item != null) {
+                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                                } else {
+                                    setText("");
+                                }
+                            }
+                        };
+                    }
+                });
+                indexColumn.setSortable(false);
+                ngayTaoColumn.setCellValueFactory(new PropertyValueFactory<SoHoKhau, String>("ngayTao"));
+                diaChiColumn.setCellValueFactory(new PropertyValueFactory<SoHoKhau, String>("diaChi"));
+                tenChuHoColumn.setCellValueFactory(new PropertyValueFactory<SoHoKhau, String>("tenChuHo"));
+                soLuongColumn.setCellValueFactory(new PropertyValueFactory<SoHoKhau, Integer>("soThanhVen"));
+                int lastIndex = 0;
+                int displace = filteredData.size() % ROWS_PER_PAGE;
+                if (displace > 0) {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE;
+                } else {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
+                }
+                if (filteredData.isEmpty()) tableView.setItems(FXCollections.observableArrayList(filteredData));
+                else {
+                    if (lastIndex == pageIndex && displace > 0) {
+                        tableView.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+                    } else {
+                        tableView.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+                    }
+                }
+        		return tableView;            	
+            });
+    	});
     }
 
     void detail(MouseEvent event) throws IOException {
