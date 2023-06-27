@@ -130,6 +130,7 @@ public class AddKhaiTuController implements Initializable{
 
     @FXML
     void returnToKhaiTu(ActionEvent event) throws IOException {
+    	System.out.println(nguoiChet.getHoTen());
     	ViewUtils a = new ViewUtils();
     	a.backToView(event, KHAITU_VIEW);
     }
