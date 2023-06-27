@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.nhankhau.ChonNhanKhauController">
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.hokhau.AddThanhVienController">
    <children>
       <Pagination fx:id="pagination" layoutX="38.0" layoutY="153.0" maxPageIndicatorCount="3" pageCount="0" prefHeight="410.0" prefWidth="634.0" />
       <TableView fx:id="tableView" layoutX="38.0" layoutY="153.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
@@ -42,7 +42,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="199.0" text="Chọn nhân khẩu">
+      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="199.0" text="Chọn thành viên">
          <font>
             <Font size="24.0" />
          </font>

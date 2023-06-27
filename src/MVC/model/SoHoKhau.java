@@ -11,14 +11,19 @@ public class SoHoKhau {
 		return idHoKhau;
 	}
 
-	public SoHoKhau(int idHoKhau, String diaChi, String tenChuHo, int soThanhVen) {
+	public SoHoKhau(int idHoKhau, String ngayTao, String diaChi, String tenChuHo, int soThanhVen) {
 		super();
 		this.idHoKhau = idHoKhau;
+		this.ngayTao = ngayTao;
 		this.diaChi = diaChi;
 		this.tenChuHo = tenChuHo;
 		this.soThanhVen = soThanhVen;
 	}
 
+	public SoHoKhau() {
+		
+	}
+	
 	public String getTenChuHo() {
 		return tenChuHo;
 	}

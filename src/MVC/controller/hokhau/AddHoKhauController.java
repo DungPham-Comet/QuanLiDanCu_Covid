@@ -58,7 +58,7 @@ public class AddHoKhauController implements Initializable{
     @FXML
     private Text title;
     
-    private NhanKhau chuHoKhau = ChonNhanKhauController.selectedNhanKhau;
+    private NhanKhau chuHoKhau = ChonNhanKhauController.getSelectedNhanKhau();
 
     @FXML
     void chonChuHo(ActionEvent event) throws IOException {
@@ -111,8 +111,10 @@ public class AddHoKhauController implements Initializable{
     }
 
     @FXML
-    void goBack(ActionEvent event) {
-
+    void goBack(ActionEvent event) throws IOException {
+    	ChonNhanKhauController.DeleteSelectedNhanKhau();
+    	ViewUtils viewUtils = new ViewUtils();
+    	viewUtils.backToView(event, HOKHAU_VIEW);
     }
 
 	@Override

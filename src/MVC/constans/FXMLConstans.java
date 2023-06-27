@@ -25,6 +25,7 @@ public class FXMLConstans {
 	public static String ADD_XETNGHIEM_VIEW = "/MVC/views/view/add-xetnghiem-view.fxml";
 	public static String DETAIL_KHAITU_VIEW = "/MVC/views/view/detail-khaitu-view.fxml";
 	public static String CHON_NHAN_KHAU_VIEW = "/MVC/views/view/chon_nhan_khau.fxml";
+	public static String ADD_THANHVIEN_VIEW = "/MVC/views/view/add-thanhvien-view.fxml";
+	public static String CHON_HO_KHAU_VIEW = "/MVC/views/view/chon-ho-khau-view.fxml";
 	public static String CHON_NHAN_KHAU_VIEW2 = "/MVC/views/view/chon_nhan_khau2.fxml";
-	
 }

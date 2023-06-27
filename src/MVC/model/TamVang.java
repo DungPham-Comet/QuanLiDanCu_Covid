@@ -3,16 +3,18 @@ package MVC.model;
 public class TamVang {
 	
 	private int idTamVang;
-	private int idNguoiTamVang;
+	private String tenNguoiTamVang;
 	private String ngayTao;
 	private String ngayKetThuc;
+	private String diaDiem;
 	
-	public TamVang(int idTamVang, int idNguoiTamVang, String ngayTao, String ngayKetThuc) {
+	public TamVang(int idTamVang, String tenNguoiTamVang, String ngayTao, String ngayKetThuc, String diaDiem) {
 		super();
 		this.idTamVang = idTamVang;
-		this.idNguoiTamVang = idNguoiTamVang;
+		this.tenNguoiTamVang = tenNguoiTamVang;
 		this.ngayTao = ngayTao;
 		this.ngayKetThuc = ngayKetThuc;
+		this.diaDiem = diaDiem;
 	}
 
 	public int getIdTamVang() {
@@ -23,12 +25,20 @@ public class TamVang {
 		this.idTamVang = idTamVang;
 	}
 
-	public int getIdNguoiTamVang() {
-		return idNguoiTamVang;
+	public String getTenNguoiTamVang() {
+		return tenNguoiTamVang;
 	}
 
-	public void setIdNguoiTamVang(int idNguoiTamVang) {
-		this.idNguoiTamVang = idNguoiTamVang;
+	public void setTenNguoiTamVang(String tenNguoiTamVang) {
+		this.tenNguoiTamVang = tenNguoiTamVang;
+	}
+
+	public String getDiaDiem() {
+		return diaDiem;
+	}
+
+	public void setDiaDiem(String diaDiem) {
+		this.diaDiem = diaDiem;
 	}
 
 	public String getNgayTao() {
