@@ -3,16 +3,16 @@ package MVC.model;
 public class TamTru {
 	
 	private int idTamTru;
-	private int idNguoiTamTru;
-	private int maHoKhau;
+	private String tenNguoiTamTru;
+	private String tenChuHo;
 	private String ngayTao;
 	private String ngayKetThuc;
 	
-	public TamTru(int idTamTru, int idNguoiTamTru, int maHoKhau, String ngayTao, String ngayKetThuc) {
+	public TamTru(int idTamTru, String tenNguoiTamTru, String tenChuHo, String ngayTao, String ngayKetThuc) {
 		super();
 		this.idTamTru = idTamTru;
-		this.idNguoiTamTru = idNguoiTamTru;
-		this.maHoKhau = maHoKhau;
+		this.tenNguoiTamTru = tenNguoiTamTru;
+		this.tenChuHo = tenChuHo;
 		this.ngayTao = ngayTao;
 		this.ngayKetThuc = ngayKetThuc;
 	}
@@ -25,20 +25,20 @@ public class TamTru {
 		this.idTamTru = idTamTru;
 	}
 
-	public int getIdNguoiTamTru() {
-		return idNguoiTamTru;
+	public String getTenNguoiTamTru() {
+		return tenNguoiTamTru;
 	}
 
-	public void setIdNguoiTamTru(int idNguoiTamTru) {
-		this.idNguoiTamTru = idNguoiTamTru;
+	public void setTenNguoiTamTru(String tenNguoiTamTru) {
+		this.tenNguoiTamTru = tenNguoiTamTru;
 	}
 
-	public int getMaHoKhau() {
-		return maHoKhau;
+	public String getTenChuHo() {
+		return tenChuHo;
 	}
 
-	public void setMaHoKhau(int maHoKhau) {
-		this.maHoKhau = maHoKhau;
+	public void setTenChuHo(String tenChuHo) {
+		this.tenChuHo = tenChuHo;
 	}
 
 	public String getNgayTao() {

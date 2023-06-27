@@ -11,13 +11,14 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.tamvang.TamVangController">
    <children>
-      <Pagination fx:id="pagination" layoutX="38.0" layoutY="275.0" maxPageIndicatorCount="3" prefHeight="328.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="125.0" prefHeight="414.0" prefWidth="613.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="143.0" maxPageIndicatorCount="3" prefHeight="450.0" prefWidth="634.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="125.0" prefHeight="414.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="41.599971771240234" text="#" />
-            <TableColumn fx:id="maHoKhauColumn" prefWidth="239.2000274658203" text="Tên người TV" />
-            <TableColumn fx:id="diaChiColumn" prefWidth="177.5999755859375" text="Ngày bắt đầu" />
-            <TableColumn fx:id="tenChuHoColumn" prefWidth="156.79998779296875" text="Ngày kết thúc" />
+            <TableColumn fx:id="tenTamVangColumn" prefWidth="152.0" text="Tên người TV" />
+            <TableColumn fx:id="ngayBatDauColumn" prefWidth="113.59999084472656" text="Ngày bắt đầu" />
+            <TableColumn fx:id="ngayKetThucColumn" prefWidth="129.60003662109375" text="Ngày kết thúc" />
+            <TableColumn fx:id="diaDiemColumn" prefWidth="195.99997558593748" text="Địa điểm" />
          </columns>
       </TableView>
       <Button layoutX="462.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">

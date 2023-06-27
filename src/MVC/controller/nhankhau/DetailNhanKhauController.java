@@ -125,6 +125,7 @@ public class DetailNhanKhauController implements Initializable {
     				Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
     				int result = NhanKhauServices.updateNhanKhau(conn, hoTen, ngaySinh, nguyenQuan, gioitinh, danToc, thuongTru, tonGiao, quocTich, ngheNghiep, id);
     				int result2 = NhanKhauServices.updateCccd(conn, cccd, id);
+    				System.out.println(id);
     				if(result == 1) {
     					createDialog(
     							Alert.AlertType.CONFIRMATION,
