@@ -36,7 +36,7 @@ public class AddHoKhauController implements Initializable{
 
     @FXML
     private Button add_btn;
-
+ 
     @FXML
     private AnchorPane basePane;
 
