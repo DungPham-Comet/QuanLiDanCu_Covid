@@ -151,7 +151,7 @@ INSERT INTO `CCCD` (`IdCccd`, `NgayCap`, `NoiCap`, `NgayHetHan`, `DacDiem`,`IdNh
 -- Table `cnpm2023`.`KhaiTu`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cnpm2023`.`KhaiTu` (
-  `IdKhaiTu` int NOT NULL ,
+  `IdKhaiTu` int NOT NULL AUTO_INCREMENT,
   `NgayChet` DATE NULL,
   `LyDoChet` VARCHAR(500) NULL DEFAULT NULL,
   `NgayKhai` DATE NULL,
