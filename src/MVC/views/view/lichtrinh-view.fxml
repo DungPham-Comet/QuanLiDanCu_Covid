@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.hokhau.HoKhauController">
+<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.lichtrinh.LichTrinhController">
    <children>
       <TableView layoutX="63.0" layoutY="185.0" prefHeight="354.0" prefWidth="584.0">
          <columns>
