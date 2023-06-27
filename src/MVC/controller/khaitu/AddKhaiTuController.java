@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import MVC.controller.nhankhau.ChonNhanKhauController;
+import MVC.controller.nhankhau.ChonNhanKhauController2;
 import MVC.model.NhanKhau;
 import MVC.services.HoKhauServices;
 import MVC.services.KhaiTuServices;
@@ -74,15 +75,16 @@ public class AddKhaiTuController implements Initializable{
         stage.setScene(scene);
     }
     
+    private NhanKhau nguoiKhai = ChonNhanKhauController2.selectedNhanKhau;
 
     @FXML
     void chonNguoiKhai(ActionEvent event) throws IOException {
     	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(CHON_NHAN_KHAU_VIEW));
+        loader.setLocation(getClass().getResource(CHON_NHAN_KHAU_VIEW2));
         Parent studentViewParent = loader.load();
         Scene scene = new Scene(studentViewParent);
-        ChonNhanKhauController controller = loader.getController();
+        ChonNhanKhauController2 controller = loader.getController();
         controller.setPreviousPage(ADD_KHAITU_VIEW);
         stage.setScene(scene);
     }
