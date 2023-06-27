@@ -66,7 +66,7 @@ public class AddKhaiTuController implements Initializable{
     
     @FXML
     void chonNguoiChet(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(CHON_NHAN_KHAU_VIEW));
         Parent studentViewParent = loader.load();
@@ -130,6 +130,7 @@ public class AddKhaiTuController implements Initializable{
 
     @FXML
     void returnToKhaiTu(ActionEvent event) throws IOException {
+    	System.out.println(nguoiChet.getHoTen());
     	ViewUtils a = new ViewUtils();
     	a.backToView(event, KHAITU_VIEW);
     }
