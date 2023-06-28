@@ -17,7 +17,7 @@ public class FXMLConstans {
 	public static String KHAITU_VIEW = "/MVC/views/view/khaitu-view.fxml";
 	public static String ADD_KHAITU_VIEW = "/MVC/views/view/add-khaitu-view.fxml";
 	public static String LICHTRINH_VIEW = "/MVC/views/view/lichtrinh-view.fxml";
-	public static String TTDICHUYEN_VIEW = "/MVC/views/view/thongtindichuyen.fxml";
+	public static String TTDICHUYEN_VIEW = "/MVC/views/view/thongtindichuyen-view.fxml";
 	public static String ADD_TTDICHUYEN_VIEW = "/MVC/views/view/add-thongtindichuyen.fxml";
 	public static String CACHLY_VIEW = "/MVC/views/view/cachly-view.fxml";
 	public static String ADD_CACHLY_VIEW = "/MVC/views/view/add-cachly-view.fxml";

@@ -3,13 +3,13 @@ package MVC.model;
 public class LichTrinh {
 	
 	private int idLichTrinh;
-	private int idNguoiKhai;
+	private String tenNguoiKhai;
 	private String tenLichTrinh;
 	
-	public LichTrinh(int idLichTrinh, int idNguoiKhai, String tenLichTrinh) {
+	public LichTrinh(int idLichTrinh, String tenNguoiKhai, String tenLichTrinh) {
 		super();
 		this.idLichTrinh = idLichTrinh;
-		this.idNguoiKhai = idNguoiKhai;
+		this.tenNguoiKhai = tenNguoiKhai;
 		this.tenLichTrinh = tenLichTrinh;
 	}
 
@@ -21,12 +21,12 @@ public class LichTrinh {
 		this.idLichTrinh = idLichTrinh;
 	}
 
-	public int getIdNguoiKhai() {
-		return idNguoiKhai;
+	public String getTenNguoiKhai() {
+		return tenNguoiKhai;
 	}
 
-	public void setIdNguoiKhai(int idNguoiKhai) {
-		this.idNguoiKhai = idNguoiKhai;
+	public void setTenNguoiKhai(String tenNguoiKhai) {
+		this.tenNguoiKhai = tenNguoiKhai;
 	}
 
 	public String getTenLichTrinh() {
@@ -36,7 +36,5 @@ public class LichTrinh {
 	public void setTenLichTrinh(String tenLichTrinh) {
 		this.tenLichTrinh = tenLichTrinh;
 	}
-	
-	
 	
 }
