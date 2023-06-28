@@ -132,6 +132,7 @@ public class LichTrinhController implements Initializable{
             Scene scene = new Scene(studentViewParent);
             TTDiChuyenController controller = loader.getController();
             controller.setLichTrinh(selected);
+            System.out.println(selected.getIdLichTrinh());
             stage.setScene(scene);
     	}
 		
