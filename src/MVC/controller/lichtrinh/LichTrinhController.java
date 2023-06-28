@@ -1,7 +1,7 @@
 package MVC.controller.lichtrinh;
 
 import static MVC.constans.DBConstans.ROWS_PER_PAGE;
-import static MVC.constans.FXMLConstans.DETAIL_KHAITU_VIEW;
+import static MVC.constans.FXMLConstans.*;
 import static MVC.utils.Utils.convertDate;
 import static MVC.utils.Utils.createDialog;
 
@@ -12,9 +12,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import MVC.controller.khaitu.DetailKhaiTuController;
+import MVC.controller.ttdichuyen.TTDiChuyenController;
 import MVC.model.KhaiTu;
 import MVC.model.LichTrinh;
 import MVC.model.LichTrinh;
+import MVC.services.KhaiTuServices;
 import MVC.services.LichTrinhServices;
 import MVC.services.LichTrinhServices;
 import MVC.utils.ViewUtils;
@@ -31,6 +33,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -116,23 +120,21 @@ public class LichTrinhController implements Initializable{
     
     public void detail(MouseEvent event) throws IOException {
 
-//    	LichTrinh selected = lichTrinhTable.getSelectionModel().getSelectedItem();
-//    	if(selected == null) {
-//    		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một mục");
-//    	}
-//    	else {
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            FXMLLoader loader = new FXMLLoader();
-//            loader.setLocation(getClass().getResource(DETAIL_KHAITU_VIEW));
-//            Parent studentViewParent = loader.load();
-//            Scene scene = new Scene(studentViewParent);
-//            DetailLichTrinhController controller = loader.getController();
-//            controller.setKhaiTu(selected);
-//            controller.setIdKhaiTu(selected.getIdKhaiTu());
-//            //System.out.println("ID: " + selected.getIdKhaiTu());
-//            stage.setScene(scene);
-//    	}
-//		
+    	LichTrinh selected = lichTrinhTable.getSelectionModel().getSelectedItem();
+    	if(selected == null) {
+    		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một mục");
+    	}
+    	else {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(TTDICHUYEN_VIEW));
+            Parent studentViewParent = loader.load();
+            Scene scene = new Scene(studentViewParent);
+            TTDiChuyenController controller = loader.getController();
+            controller.setLichTrinh(selected);
+            stage.setScene(scene);
+    	}
+		
 	}
     
     @SuppressWarnings("unchecked")
@@ -184,7 +186,35 @@ public class LichTrinhController implements Initializable{
 
     @FXML
     void deleteLichTrinh(ActionEvent event) {
-
+    	LichTrinh selected = lichTrinhTable.getSelectionModel().getSelectedItem();
+        if (selected == null) createDialog(Alert.AlertType.WARNING,
+                "Cảnh báo",
+                "Vui lòng chọn một mục để tiếp tục", "");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận xóa thông tin");
+            alert.setContentText("Đồng chí muốn xóa thông tin khai tử này?");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    // Delete in Database
+                    try {
+                        int ID = selected.getIdLichTrinh();
+                        int result1 = LichTrinhServices.deleteLichTrinh(ID);
+                        if (result1 == 1) createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");
+                        ViewUtils viewUtils = new ViewUtils();
+                        viewUtils.backToView(event, LICHTRINH_VIEW);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     @FXML

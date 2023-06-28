@@ -275,10 +275,19 @@ CREATE TABLE IF NOT EXISTS `cnpm2023`.`ThongTinDiChuyen` (
   PRIMARY KEY (`IdThongTin`),
   CONSTRAINT `ThongTinDiChuyen_ibfk_1`
     FOREIGN KEY (`IdLichTrinh`)
-    REFERENCES `cnpm2023`.`LichTrinh` (`IdLichTrinh`))
+    REFERENCES `cnpm2023`.`LichTrinh` (`IdLichTrinh`)) 
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
+
+ALTER TABLE ThongTinDiChuyen
+DROP FOREIGN KEY ThongTinDiChuyen_ibfk_1;
+
+ALTER TABLE ThongTinDiChuyen
+ADD CONSTRAINT ThongTinDiChuyen_ibfk_1
+FOREIGN KEY (IdLichTrinh) REFERENCES LichTrinh(IdLichTrinh)
+ON DELETE CASCADE;
+
 -- insert ThongTinDiChuyen
 INSERT INTO `ThongTinDiChuyen` (`IdThongTin`, `PhuongTien`, `ThoiGian`, `DiaDiem`, `IdLichTrinh`) VALUES
 
@@ -389,3 +398,5 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ALTER TABLE cnpm2023.tamvang ADD COLUMN DiaDiem VARCHAR(255) 
+
+

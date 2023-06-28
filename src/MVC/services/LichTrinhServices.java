@@ -16,4 +16,15 @@ public class LichTrinhServices {
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
         return preparedStatement.executeQuery();
     }
+	
+	public static int deleteLichTrinh(int idLichTrinh) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String DELETE_QUERY =
+                "DELETE FROM cnpm2023.lichtrinh " +
+                        "WHERE IdLichTrinh =?";
+        preparedStatement = conn.prepareStatement(DELETE_QUERY);
+        preparedStatement.setInt(1, idLichTrinh);
+        return preparedStatement.executeUpdate();
+    }
 }
