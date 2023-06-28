@@ -11,13 +11,13 @@
 
 <AnchorPane prefHeight="606.0" prefWidth="710.0" stylesheets="@../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.ttdichuyen.TTDiChuyenController">
    <children>
-      <Pagination layoutX="72.0" layoutY="350.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="243.0" prefWidth="567.0" />
-      <TableView layoutX="71.0" layoutY="350.0" prefHeight="194.0" prefWidth="567.0">
+      <Pagination fx:id="pagination" layoutX="72.0" layoutY="350.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="243.0" prefWidth="567.0" />
+      <TableView fx:id="diChuyenTable" layoutX="71.0" layoutY="350.0" prefHeight="194.0" prefWidth="567.0">
          <columns>
-            <TableColumn prefWidth="55.19997787475586" text="#" />
-            <TableColumn prefWidth="200.8000030517578" text="Địa điểm" />
-            <TableColumn prefWidth="156.0" text="Thời gian" />
-            <TableColumn prefWidth="157.60003662109375" text="Phương tiện" />
+            <TableColumn fx:id="indexCol" prefWidth="55.19997787475586" text="#" />
+            <TableColumn fx:id="diaDiemCol" prefWidth="200.8000030517578" text="Địa điểm" />
+            <TableColumn fx:id="thoiGianCol" prefWidth="156.0" text="Thời gian" />
+            <TableColumn fx:id="phuongTienCol" prefWidth="157.60003662109375" text="Phương tiện" />
          </columns>
       </TableView>
       <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="22.0" prefHeight="35.0" prefWidth="215.0" text="Thông tin di chuyển">
