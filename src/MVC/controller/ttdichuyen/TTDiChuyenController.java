@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import MVC.model.ThongTinDiChuyen;
+import MVC.controller.hokhau.AddThanhVienController;
 import MVC.model.LichTrinh;
 import MVC.model.ThongTinDiChuyen;
 import MVC.services.DiChuyenServices;
@@ -189,9 +190,16 @@ public class TTDiChuyenController{
 	}
 
     @FXML
-    void addTTDiChuyen(ActionEvent event) {
-
-    }
+    void addTTDiChuyen(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(ADD_TTDICHUYEN_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        AddTTDiChuyenController controller = loader.getController();
+        controller.setLichTrinh(lichTrinh);
+        stage.setScene(scene);
+    }	
 
     @FXML
     void deleteTTDiChuyen(ActionEvent event) {

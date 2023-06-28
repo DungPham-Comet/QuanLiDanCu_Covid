@@ -29,4 +29,14 @@ public class DiChuyenServices {
         preparedStatement.setInt(1, idLichTrinh);
         return preparedStatement.executeUpdate();
     }
+	
+	public static int addDiChuyen(Connection conn, int idLichTrinh, String phuongTien, String thoiGian, String diaDiem) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO thongtindichuyen (IdLichTrinh, PhuongTien, ThoiGian, DiaDiem) VALUES (?, ?, ?, ?);";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setInt(1, idLichTrinh);
+    	preparedStatement.setString(2, phuongTien);
+    	preparedStatement.setString(3, thoiGian);
+    	preparedStatement.setString(4, diaDiem);
+    	return preparedStatement.executeUpdate();
+    }
 }
