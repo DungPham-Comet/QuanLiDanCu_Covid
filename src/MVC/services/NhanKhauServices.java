@@ -85,4 +85,18 @@ public class NhanKhauServices {
         preparedStatement.execute();
         return preparedStatement.executeUpdate();
     }
+    public static ResultSet getCCCd(int idNhanKhau) throws SQLException {
+        // Connecting Database
+        String SELECT_QUERY = "SELECT nhankhau.HoTen, nhankhau.DOB, nhankhau.GioiTinh, nhankhau.MaCccd, nhankhau.NguyenQuan, nhankhau.ThuongTru, cccd.NgayCap, cccd.NgayHetHan, cccd.NoiCap, cccd.DacDiem FROM nhankhau, cccd WHERE nhankhau.MaCccd = cccd.IdCccd AND nhankhau.IdNhanKhau = ?;";
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, idNhanKhau);
+        return preparedStatement.executeQuery();
+    }
+    public static void main(String[] args) throws SQLException {
+		ResultSet result = NhanKhauServices.getCCCd(5);
+		while(result.next()) {
+			System.out.println(result.getString("HoTen"));
+		}
+	}
 }

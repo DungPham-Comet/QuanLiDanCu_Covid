@@ -77,6 +77,26 @@ public class HoKhauServices {
         return preparedStatement.executeUpdate();
     }
     
+    public static int updateThanhVien(int idNhanKhau, String quanHe) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String UPDATE_QUERY = "UPDATE thanhvienho SET thanhvienho.QuanHeChuHo = ? WHERE thanhvienho.IdNhanKhau = ?;";
+        preparedStatement = conn.prepareStatement(UPDATE_QUERY);
+        preparedStatement.setString(1, quanHe);
+        preparedStatement.setInt(2, idNhanKhau);
+        return preparedStatement.executeUpdate();    	
+    }
+    
+    public static int updateHoKhau(int idHoKhau, int idNhanKhau) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String UPDATE_QUERY = "UPDATE sohokhau SET IdChuHo = ? WHERE IdHoKhau = ?;";
+        preparedStatement = conn.prepareStatement(UPDATE_QUERY);
+        preparedStatement.setInt(1, idNhanKhau);
+        preparedStatement.setInt(2, idHoKhau);
+        return preparedStatement.executeUpdate();    	
+    }
+    
     public static void main(String[] args) throws SQLException {
     	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
     	System.out.println(getHoKhauByChuHo(conn, 9));
