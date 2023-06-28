@@ -7,10 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="418.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.ttdichuyen.AddTTDiChuyenController">
    <children>
-      <Label layoutX="40.0" layoutY="26.0" text="Cập nhật địa điểm di chuyển">
+      <Label layoutX="40.0" layoutY="26.0" text="Cập nhật thông tin di chuyển">
          <font>
             <Font size="24.0" />
          </font>
@@ -20,7 +19,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="182.0" layoutY="93.0" prefHeight="30.0" prefWidth="201.0" promptText="Xe bus">
+      <TextField fx:id="phuongTienTextField" layoutX="182.0" layoutY="93.0" prefHeight="30.0" prefWidth="201.0" promptText="Xe bus">
          <font>
             <Font size="14.0" />
          </font>
@@ -30,28 +29,23 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <DatePicker layoutX="181.0" layoutY="146.0" prefHeight="26.0" prefWidth="202.0" promptText="24/08/2023" />
+      <DatePicker fx:id="thoiGianDatePicker" layoutX="181.0" layoutY="146.0" prefHeight="26.0" prefWidth="202.0" promptText="24/08/2023" />
       <Label layoutX="40.0" layoutY="201.0" text="Địa điểm">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="182.0" layoutY="199.0" prefHeight="30.0" prefWidth="201.0" promptText="Hà Nội">
+      <TextField fx:id="diaDiemTextField" layoutX="182.0" layoutY="199.0" prefHeight="30.0" prefWidth="201.0" promptText="Hà Nội">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button layoutX="329.0" layoutY="281.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
+      <Button fx:id="returnButton" layoutX="444.0" layoutY="281.0" mnemonicParsing="false" onAction="#returnToTTDiChuyen" style="-fx-background-color: #3f4d67;" text="Quay lại" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="444.0" layoutY="281.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Quay lại" textFill="WHITE">
-         <font>
-            <Font name="Segoe UI" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="246.0" layoutY="281.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
+      <Button fx:id="addButton" layoutX="356.0" layoutY="281.0" mnemonicParsing="false" onAction="#addTTDiChuyen" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
