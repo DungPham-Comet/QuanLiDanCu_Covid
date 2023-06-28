@@ -1,11 +1,17 @@
 package MVC.controller.hokhau;
 
+import static MVC.constans.DBConstans.DATABASE;
+import static MVC.constans.DBConstans.PASSWORD;
+import static MVC.constans.DBConstans.USERNAME;
 import static MVC.constans.FXMLConstans.*;
 import static MVC.utils.Utils.createDialog;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import MVC.controller.nhankhau.ChonNhanKhauController;
 import MVC.model.SoHoKhau;
@@ -28,6 +34,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -176,7 +183,42 @@ public class DetailHoKhauController {
 
     @FXML
     void doiChuHo(ActionEvent event) {
-
+    	ThanhVienCuaHo selected = thanhVienTable.getSelectionModel().getSelectedItem();
+    	if(selected == null) {
+    		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một nhân khẩu");
+    	}
+    	else {
+            	try {
+                    Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+                    int rs = HoKhauServices.updateThanhVien(selected.getIdNhanKhau(), "chủ hộ");
+                    int rs3 = HoKhauServices.updateHoKhau(hoKhau.getIdHoKhau(), selected.getIdNhanKhau());
+                    if(rs == 1) {
+    					createDialog(
+    							Alert.AlertType.CONFIRMATION,
+                                "Thành công",
+                                "", "Đồng chí vất vả rồi!");
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource(DETAIL_HOKHAU_VIEW));
+                        Parent studentViewParent = loader.load();
+                        Scene scene = new Scene(studentViewParent);
+                        DetailHoKhauController controller = loader.getController();
+                        hoKhau.setTenChuHo(selected.getHoTen());
+                        controller.setHoKhau(hoKhau);
+                        stage.setScene(scene);
+                    }
+                    else {
+    					createDialog(
+    							Alert.AlertType.ERROR,
+                                "Thất bại",
+                                "", "Oops, mời đồng chí nhập lại thông tin!");
+                    }
+                    conn.close();
+                    
+				} catch (SQLException | IOException e) {
+					e.printStackTrace();
+				}
+    	}   	
     }
 
     @FXML
@@ -192,7 +234,47 @@ public class DetailHoKhauController {
 
     @FXML
     void updatethanhvien(ActionEvent event) {
-
+    	ThanhVienCuaHo selected = thanhVienTable.getSelectionModel().getSelectedItem();
+    	if(selected == null) {
+    		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một nhân khẩu");
+    	}
+    	else {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Nhập thông tin Quan hệ với chủ hộ");
+            dialog.setHeaderText("Quan hệ với chủ hộ:");
+            dialog.setContentText("Quan hệ với chủ hộ:");
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(quanhe -> {
+            	try {
+                    Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+                    int rs = HoKhauServices.updateThanhVien(selected.getIdNhanKhau(), quanhe);
+                    if(rs == 1) {
+    					createDialog(
+    							Alert.AlertType.CONFIRMATION,
+                                "Thành công",
+                                "", "Đồng chí vất vả rồi!");
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource(DETAIL_HOKHAU_VIEW));
+                        Parent studentViewParent = loader.load();
+                        Scene scene = new Scene(studentViewParent);
+                        DetailHoKhauController controller = loader.getController();
+                        controller.setHoKhau(hoKhau);
+                        stage.setScene(scene);
+                    }
+                    else {
+    					createDialog(
+    							Alert.AlertType.ERROR,
+                                "Thất bại",
+                                "", "Oops, mời đồng chí nhập lại thông tin!");
+                    }
+                    conn.close();
+                    
+				} catch (SQLException | IOException e) {
+					e.printStackTrace();
+				}
+            });
+    	}
     }
 
 }

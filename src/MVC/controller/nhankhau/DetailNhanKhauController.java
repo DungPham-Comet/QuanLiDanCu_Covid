@@ -5,13 +5,18 @@ import MVC.model.NhanKhau;
 import MVC.services.NhanKhauServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import MVC.utils.ViewUtils;
 import static MVC.constans.FXMLConstans.*;
 import static MVC.constans.DBConstans.*;
@@ -64,7 +69,10 @@ public class DetailNhanKhauController implements Initializable {
     
     private int id;
     
+    private NhanKhau nhanKhau;
+    
     public void setNhanKhau(NhanKhau nhanKhau) {
+    	this.nhanKhau = nhanKhau;
     	hoVaTenTextField.setText(nhanKhau.getHoTen());
     	ngaySinhDatePicker.setValue(LOCAL_DATE(nhanKhau.getNgaySinh()));
     	gioiTinhChoiceBox.setValue(nhanKhau.isGioiTinh());
@@ -154,4 +162,16 @@ public class DetailNhanKhauController implements Initializable {
         gioiTinhChoiceBox.setValue("Nam");
 	}
 
+    @FXML
+    void xemCccd(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(DETAIL_CCCD_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        DetailCccdController controller = loader.getController();
+        controller.setNhanKhau(nhanKhau);
+        stage.setScene(scene);
+    }
+    
 }
