@@ -44,7 +44,7 @@ import static MVC.constans.DBConstans.*;
 public class KhaiTuController implements Initializable{
 	
 	@FXML
-  private AnchorPane basePane;
+	private AnchorPane basePane;
   
     @FXML
     private TableColumn indexColumn;
