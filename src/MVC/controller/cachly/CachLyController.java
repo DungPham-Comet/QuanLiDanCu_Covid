@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import MVC.model.CachLy;
 import MVC.model.KhaiTu;
 import MVC.model.CachLy;
+import MVC.model.CachLy;
 import MVC.services.CachLyServices;
 import MVC.services.KhaiTuServices;
 import MVC.services.CachLyServices;
@@ -22,6 +23,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,7 +131,7 @@ public class CachLyController implements Initializable{
         });
     }
     
-public void detail(MouseEvent event) throws IOException {
+    public void detail(MouseEvent event) throws IOException {
     	
     	CachLy selected = tableCachLy.getSelectionModel().getSelectedItem();
     	if(selected == null) {
@@ -195,8 +197,13 @@ public void detail(MouseEvent event) throws IOException {
 	}
     
     @FXML
-    void addCachLy(ActionEvent event) {
-
+    void addCachLy(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(ADD_CACHLY_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        stage.setScene(scene);
     }
 
     @FXML
@@ -234,7 +241,79 @@ public void detail(MouseEvent event) throws IOException {
 
     @FXML
     void search(MouseEvent event) {
+    	FilteredList<CachLy> filteredData = new FilteredList<>(cachLyList, p -> true);
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(cachly -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = searchTextField.getText().toLowerCase();
+                String filterType = "";
+                if(nameRadioButton.isSelected()) {
+                	if(cachly.getNguoiCachLy() == null) {
+                		filterType = "";
+                	}
+                	else {
+                		filterType = cachly.getNguoiCachLy().toLowerCase();
+                	}
+                }
+                else if(mucDoRadioButton.isSelected()) {
+                	filterType = cachly.getMucDo().toLowerCase();
+                }
+                if (filterType.contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            int soDu = filteredData.size() % ROWS_PER_PAGE;
+            if (soDu != 0) pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
+            else pagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
+            pagination.setMaxPageIndicatorCount(5);
+            pagination.setPageFactory(pageIndex->{
+        		indexCol.setCellValueFactory((Callback<TableColumn.CellDataFeatures<CachLy, CachLy>, ObservableValue<CachLy>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+                indexCol.setCellFactory(new Callback<TableColumn<CachLy, CachLy>, TableCell<CachLy, CachLy>>() {
+                    @Override
+                    public TableCell<CachLy, CachLy> call(TableColumn<CachLy, CachLy> param) {
+                        return new TableCell<CachLy, CachLy>() {
+                            @Override
+                            protected void updateItem(CachLy item, boolean empty) {
+                                super.updateItem(item, empty);
 
+                                if (this.getTableRow() != null && item != null) {
+                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                                } else {
+                                    setText("");
+                                }
+                            }
+                        };
+                    }
+                });
+                indexCol.setSortable(false);
+                nguoiCachLyCol.setCellValueFactory(new PropertyValueFactory<CachLy, String>("nguoiCachLy"));
+                thoiGianCol.setCellValueFactory(new PropertyValueFactory<CachLy, String>("thoiGian"));
+                mucDoCol.setCellValueFactory(new PropertyValueFactory<CachLy, String>("mucDo"));
+                diaDiemCol.setCellValueFactory(new PropertyValueFactory<CachLy, String>("diaDiem"));
+   
+                int lastIndex = 0;
+                int displace = filteredData.size() % ROWS_PER_PAGE;
+                if (displace > 0) {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE;
+                } else {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
+                }
+                // Add CachLy to table
+                if (filteredData.isEmpty()) tableCachLy.setItems(FXCollections.observableArrayList(filteredData));
+                else {
+                    if (lastIndex == pageIndex && displace > 0) {
+                        tableCachLy.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+                    } else {
+                        tableCachLy.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+                    }
+                }
+                return tableCachLy;
+            });
+        }); 
     }
 
 }

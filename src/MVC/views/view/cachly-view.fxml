@@ -37,7 +37,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" selected="true" text="Theo tên">
+      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup></RadioButton>
@@ -47,6 +47,6 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Pagination fx:id="pagination" layoutX="36.0" layoutY="185.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="426.0" prefWidth="642.0" />
+      <Pagination fx:id="pagination" layoutX="37.0" layoutY="187.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="424.0" prefWidth="631.0" />
    </children>
 </AnchorPane>
