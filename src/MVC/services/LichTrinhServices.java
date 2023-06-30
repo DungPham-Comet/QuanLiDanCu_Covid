@@ -27,4 +27,12 @@ public class LichTrinhServices {
         preparedStatement.setInt(1, idLichTrinh);
         return preparedStatement.executeUpdate();
     }
+	
+	public static int addLichTrinh(Connection conn, int idNguoiKhai, String tenLichTrinh) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO lichtrinh (IdNguoiKhai, TenLichTrinh) VALUES (?, ?);";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setInt(1, idNguoiKhai);
+    	preparedStatement.setString(2, tenLichTrinh);
+    	return preparedStatement.executeUpdate();
+    }
 }
