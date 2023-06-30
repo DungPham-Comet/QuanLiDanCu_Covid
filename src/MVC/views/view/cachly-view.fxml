@@ -7,18 +7,19 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.cachly.CachLyController">
    <children>
-      <TableView layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
+      <TableView fx:id="tableCachLy" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
          <columns>
-            <TableColumn prefWidth="55.19997787475586" text="#" />
-            <TableColumn prefWidth="170.40003967285156" text="Người cách ly" />
-            <TableColumn prefWidth="84.79998779296875" text="Mức độ" />
-            <TableColumn prefWidth="163.20001220703125" text="Địa điểm" />
-            <TableColumn prefWidth="163.20001220703125" text="Thời gian" />
+            <TableColumn fx:id="indexCol" prefWidth="55.19997787475586" text="#" />
+            <TableColumn fx:id="nguoiCachLyCol" prefWidth="170.40003967285156" text="Người cách ly" />
+            <TableColumn fx:id="mucDoCol" prefWidth="84.79998779296875" text="Mức độ" />
+            <TableColumn fx:id="diaDiemCol" prefWidth="163.20001220703125" text="Địa điểm" />
+            <TableColumn fx:id="thoiGianCol" prefWidth="163.20001220703125" text="Thời gian" />
          </columns>
       </TableView>
       <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="29.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
@@ -26,23 +27,26 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="611.0" layoutY="140.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
+      <Button fx:id="deleteCachLyButton" layoutX="611.0" layoutY="140.0" mnemonicParsing="false" onAction="#deleteCachLy" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button accessibleRoleDescription=" " layoutX="490.0" layoutY="140.0" mnemonicParsing="false" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button fx:id="addCachLyButton" accessibleRoleDescription=" " layoutX="490.0" layoutY="140.0" mnemonicParsing="false" onAction="#addCachLy" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <RadioButton layoutX="46.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên" />
-      <RadioButton layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo mức độ" />
+      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" selected="true" text="Theo tên">
+         <toggleGroup>
+            <ToggleGroup fx:id="group" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="mucDoRadioButton" layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo mức độ" toggleGroup="$group" />
       <TextField fx:id="searchTextField" layoutX="39.0" layoutY="90.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Pagination layoutX="245.0" layoutY="477.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="134.0" prefWidth="206.0" />
+      <Pagination fx:id="pagination" layoutX="36.0" layoutY="185.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="426.0" prefWidth="642.0" />
    </children>
 </AnchorPane>
