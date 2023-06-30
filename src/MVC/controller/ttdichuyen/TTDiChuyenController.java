@@ -13,9 +13,11 @@ import java.util.ResourceBundle;
 
 import MVC.model.ThongTinDiChuyen;
 import MVC.controller.hokhau.AddThanhVienController;
+import MVC.model.KhaiTu;
 import MVC.model.LichTrinh;
 import MVC.model.ThongTinDiChuyen;
 import MVC.services.DiChuyenServices;
+import MVC.services.KhaiTuServices;
 import MVC.services.DiChuyenServices;
 import MVC.utils.ViewUtils;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -31,6 +33,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -203,7 +207,41 @@ public class TTDiChuyenController{
 
     @FXML
     void deleteTTDiChuyen(ActionEvent event) {
-
+    	ThongTinDiChuyen selected = diChuyenTable.getSelectionModel().getSelectedItem();
+        if (selected == null) createDialog(Alert.AlertType.WARNING,
+                "Cảnh báo",
+                "Vui lòng chọn một mục để tiếp tục", "");
+        else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Xác nhận xóa thông tin");
+            alert.setContentText("Đồng chí muốn xóa thông tin di chuyển này?");
+            ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+            ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
+            alert.getButtonTypes().setAll(okButton, noButton);
+            alert.showAndWait().ifPresent(type -> {
+                if (type == okButton) {
+                    // Delete in Database
+                    try {
+                        int ID = selected.getIdThongTin();
+                        int result1 = DiChuyenServices.deleteThongTin(ID);
+                        if (result1 == 1) createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");
+                    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource(TTDICHUYEN_VIEW));
+                        Parent studentViewParent = loader.load();
+                        Scene scene = new Scene(studentViewParent);
+                        TTDiChuyenController controller = loader.getController();
+                        controller.setLichTrinh(lichTrinh);
+                        stage.setScene(scene);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+        }
     }
 
     @FXML

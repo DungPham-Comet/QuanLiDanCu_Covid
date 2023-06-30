@@ -39,4 +39,15 @@ public class DiChuyenServices {
     	preparedStatement.setString(4, diaDiem);
     	return preparedStatement.executeUpdate();
     }
+	
+	public static int deleteThongTin(int idThongTinDiChuyen) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String DELETE_QUERY =
+                "DELETE FROM cnpm2023.thongtindichuyen " +
+                        "WHERE IdThongTin = ?";
+        preparedStatement = conn.prepareStatement(DELETE_QUERY);
+        preparedStatement.setInt(1, idThongTinDiChuyen);
+        return preparedStatement.executeUpdate();
+    }
 }
