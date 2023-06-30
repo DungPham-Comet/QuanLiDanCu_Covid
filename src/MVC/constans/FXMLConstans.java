@@ -30,4 +30,5 @@ public class FXMLConstans {
 	public static String CHON_NHAN_KHAU_VIEW2 = "/MVC/views/view/chon_nhan_khau2.fxml";
 	public static String DETAIL_CCCD_VIEW = "/MVC/views/view/cccd-view.fxml";
 	public static String ADD_LICHTRINH_VIEW = "/MVC/views/view/add-lichtrinh-view.fxml";
+	public static String DETAIL_CACHLY_VIEW = "/MVC/views/view/detail-cachly-view.fxml";
 }
