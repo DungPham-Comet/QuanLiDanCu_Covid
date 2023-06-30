@@ -29,4 +29,26 @@ public class CachLyServices {
         preparedStatement.setInt(1, idCachLy);
         return preparedStatement.executeUpdate();
     }
+	
+	public static int updateCachLy(Connection conn, String mucDo, String thoiGian,String diaDiem, int idCachLy) throws SQLException {
+        	String UPDATE_QUERY = "UPDATE `cachly` SET  `DiaDiem` = ?, `MucDo` = ?, `ThoiGian` = ?" +
+    				"WHERE `IdCachLy` = ?";
+        	PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY);
+        	preparedStatement.setString(1, diaDiem);
+        	preparedStatement.setString(2, mucDo);
+        	preparedStatement.setString(3, thoiGian);
+        	preparedStatement.setInt(4, idCachLy);
+        	preparedStatement.execute();
+        	return preparedStatement.executeUpdate();
+        }
+	
+	public static int addCachLy(Connection conn, int idNguoiCachLy, String mucDo, String thoiGian, String diaDiem) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO cachly (IdNguoiCachLy, MucDo, ThoiGian, DiaDiem) VALUES (?, ?, ?, ?);";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setInt(1, idNguoiCachLy);
+    	preparedStatement.setString(2, mucDo);
+    	preparedStatement.setString(3, thoiGian);
+    	preparedStatement.setString(4, diaDiem);
+    	return preparedStatement.executeUpdate();
+    }
 }

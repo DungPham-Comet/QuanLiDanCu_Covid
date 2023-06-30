@@ -197,8 +197,13 @@ public class CachLyController implements Initializable{
 	}
     
     @FXML
-    void addCachLy(ActionEvent event) {
-
+    void addCachLy(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(ADD_CACHLY_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        stage.setScene(scene);
     }
 
     @FXML
