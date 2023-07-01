@@ -111,7 +111,7 @@ public class AddKhaiTuController implements Initializable{
     			if(result == 1) {
 					createDialog(
 							Alert.AlertType.CONFIRMATION,
-                            "Thành công",
+                            "Xin vĩnh biệt cụ!",
                             "", "Đồng chí vất vả rồi!");
 					viewUtils.backToView(event, KHAITU_VIEW);
     			}

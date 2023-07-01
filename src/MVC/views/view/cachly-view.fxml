@@ -37,7 +37,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" text="Theo tên">
+      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" selected="true" text="Theo tên">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup></RadioButton>
