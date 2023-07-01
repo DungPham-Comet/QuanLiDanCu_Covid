@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Pagination?>
@@ -24,7 +25,7 @@
          </font>
       </Button>
       <Pagination fx:id="pagination" layoutX="38.0" layoutY="176.0" maxPageIndicatorCount="3" prefHeight="428.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="180.0" prefHeight="359.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="180.0" prefHeight="359.0" prefWidth="634.0">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="41.599971771240234" text="#" />
             <TableColumn fx:id="tenChuHoColumn" prefWidth="141.60003662109375" text="Tên Chủ Hộ" />
@@ -32,6 +33,10 @@
             <TableColumn fx:id="diaChiColumn" prefWidth="230.39996337890625" text="Địa chỉ" />
             <TableColumn fx:id="soLuongColumn" prefWidth="101.5999755859375" text="Số thành viên" />
          </columns>
+         <stylesheets>
+            <URL value="@../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css" />
+            <URL value="@../css/table.css" />
+         </stylesheets>
       </TableView>
       <TextField fx:id="searchTextField" layoutX="38.0" layoutY="78.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>

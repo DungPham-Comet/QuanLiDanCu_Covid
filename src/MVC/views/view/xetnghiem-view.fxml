@@ -14,7 +14,7 @@
 <AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.xetnghiem.XetNghiemController">
    <children>
       <Pagination fx:id="pagination" layoutX="40.0" layoutY="189.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="403.0" prefWidth="631.0" />
-      <TableView fx:id="tableXetNghiem" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
+      <TableView fx:id="tableXetNghiem" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0" stylesheets="@../css/table.css">
          <columns>
             <TableColumn fx:id="indexCol" prefWidth="55.19997787475586" text="#" />
             <TableColumn fx:id="nguoiXetNghiemCol" prefWidth="208.00001525878906" text="Người xét nghiệm" />
