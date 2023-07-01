@@ -30,17 +30,17 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <RadioButton fx:id="isAdmin" layoutX="189.0" layoutY="373.0" mnemonicParsing="false" text="Quản lý" textFill="#3f4d67">
+      <RadioButton fx:id="isAdmin" layoutX="189.0" layoutY="373.0" mnemonicParsing="false" text="Cán bộ" textFill="#3f4d67">
          <font>
             <Font size="16.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="isOfficer" layoutX="421.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Cán bộ" textFill="#3f4d67">
+      <RadioButton fx:id="isOfficer" layoutX="421.0" layoutY="373.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="122.0" text="Trưởng thôn" textFill="#3f4d67">
          <font>
             <Font size="16.0" />
          </font>
       </RadioButton>
-      <Button layoutX="183.0" layoutY="500.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="26.0" prefWidth="343.0" style="-fx-background-color: #3f4d67; -fx-background-radius: 20px;" text="Back to Login" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="183.0" layoutY="500.0" mnemonicParsing="false" onAction="#backToLogin" prefHeight="26.0" prefWidth="343.0" style="-fx-background-color: #3f4d67; -fx-background-radius: 20px;" text="Back to Login" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>

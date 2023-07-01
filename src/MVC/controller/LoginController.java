@@ -11,6 +11,7 @@ import static MVC.constans.FXMLConstans.*;
 import static MVC.constans.DBConstans.*;
 import MVC.utils.ViewUtils;
 import static MVC.utils.Utils.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -75,7 +76,8 @@ public class LoginController {
     }
 
     @FXML
-    void signUpbtn(ActionEvent event) {
-
+    void signUpbtn(ActionEvent event) throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+    	viewUtils.changeScene(event, SIGNUP_VIEW);
     }
 }
