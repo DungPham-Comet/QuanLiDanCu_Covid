@@ -97,6 +97,22 @@ public class HoKhauServices {
         return preparedStatement.executeUpdate();    	
     }
     
+    public static int getTotalSoHoKhau() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM sohokhau";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+    
     public static void main(String[] args) throws SQLException {
     	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
     	System.out.println(getHoKhauByChuHo(conn, 9));

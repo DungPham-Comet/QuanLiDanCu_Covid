@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.thongke.ThongKeNhanKhauController">
+   <children>
+      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="222.0" text="Thống kê nhân khẩu">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="doTuoiPieChart" layoutX="390.0" layoutY="154.0" prefHeight="250.0" prefWidth="250.0" />
+      <PieChart fx:id="gioiTinhPieChart" layoutX="41.0" layoutY="154.0" legendSide="LEFT" prefHeight="250.0" prefWidth="250.0" titleSide="LEFT" />
+      <Label alignment="BASELINE_CENTER" layoutX="89.0" layoutY="119.0" prefHeight="35.0" prefWidth="154.0" text="Theo giới tính">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="BASELINE_CENTER" layoutX="438.0" layoutY="119.0" prefHeight="35.0" prefWidth="154.0" text="Theo độ tuổi">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
