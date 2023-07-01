@@ -12,7 +12,7 @@
 <AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.lichtrinh.LichTrinhController">
    <children>
       <Pagination fx:id="lichTrinhPagination" layoutX="64.0" layoutY="181.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="410.0" prefWidth="584.0" />
-      <TableView fx:id="lichTrinhTable" layoutX="63.0" layoutY="185.0" prefHeight="354.0" prefWidth="584.0">
+      <TableView fx:id="lichTrinhTable" layoutX="63.0" layoutY="185.0" prefHeight="354.0" prefWidth="584.0" stylesheets="@../css/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="51.99996566772461" text="#" />
             <TableColumn fx:id="nguoiKhaiColumn" prefWidth="227.2000274658203" text="Người khai" />

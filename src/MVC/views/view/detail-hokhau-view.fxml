@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -55,12 +56,16 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="thanhVienTable" layoutX="25.0" layoutY="277.0" prefHeight="255.0" prefWidth="634.0" stylesheets="@../../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css">
+      <TableView fx:id="thanhVienTable" layoutX="25.0" layoutY="277.0" prefHeight="255.0" prefWidth="634.0">
          <columns>
             <TableColumn fx:id="hoTenColumn" prefWidth="201.59997940063477" text="Họ và tên" />
             <TableColumn fx:id="cccdColumn" prefWidth="226.40000915527344" text="CCCD" />
             <TableColumn fx:id="quanHeColumn" prefWidth="206.4000244140625" text="Quan hệ với chủ hộ" />
          </columns>
+         <stylesheets>
+            <URL value="@../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css" />
+            <URL value="@../css/table.css" />
+         </stylesheets>
       </TableView>
       <Button fx:id="addThanhVienBtn" layoutX="28.0" layoutY="558.0" mnemonicParsing="false" onAction="#addthanhvien" prefHeight="28.0" prefWidth="74.0" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
          <font>
