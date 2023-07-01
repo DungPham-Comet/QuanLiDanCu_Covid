@@ -1,22 +1,77 @@
 package MVC.controller;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
 
+import MVC.services.HoKhauServices;
+import MVC.services.NhanKhauServices;
 import MVC.utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import static MVC.constans.FXMLConstans.*;
 
-public class HomeController {
+public class HomeController implements Initializable {
     @FXML
     private AnchorPane basePane;
     
     private final ViewUtils viewUtils = new ViewUtils();
     
-    public HomeController() throws SQLException{
+    @FXML
+    private Label covidLabel;
+    
+    @FXML
+    private Label truVangLabel;
+
+    @FXML
+    private Label hokhauLabel;
+    
+    @FXML
+    private Label roleLabel;
+    
+    @FXML
+    private Label nhankhauLabel;
+    
+    @FXML
+    private Label usernameLabel;
+    
+    private static Preferences userPreferences;
+    public static String userRole;
+    public static String userName;
+    
+    public static void setUserPreferences(Preferences userPreferences) {
+		HomeController.userPreferences = userPreferences;
+	}
+
+	public static void setUserRole(String userRole) {
+		HomeController.userRole = userRole;
+	}
+
+	public static void setUserName(String userName) {
+		HomeController.userName = userName;
+	}
+
+	public HomeController() throws SQLException{
     	
+    }
+    
+    @FXML
+    void logOut(ActionEvent event) throws IOException, BackingStoreException {
+        String[] keys = userPreferences.keys();
+        for (String key : keys) {
+        	System.out.println(key);
+            System.out.println(userPreferences.get(key, ""));
+            userPreferences.remove(key);
+        }
+        userPreferences.flush();
+        viewUtils.changeScene(event, LOGIN_VIEW);
     }
 	
     @FXML
@@ -65,5 +120,41 @@ public class HomeController {
     }
     public AnchorPane getAnchorPane() {
     	return this.basePane;
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		setUserPreferences(Preferences.userRoot());
+		setUserName(userPreferences.get("username", ""));
+		setUserRole(userPreferences.get("role", ""));
+		if(userRole.equals("1")) {
+			roleLabel.setText("Trưởng thôn");
+		}
+		else {
+			roleLabel.setText("Cán bộ");
+		}
+		usernameLabel.setText(userName);
+		nhankhauLabel.setText(""+NhanKhauServices.getTotalNhanKhau());
+		hokhauLabel.setText(""+HoKhauServices.getTotalSoHoKhau());
+	}
+	
+    @FXML
+    void swichToThongKeNhanKhau(MouseEvent event) throws IOException {
+    	viewUtils.changeAnchorPane(basePane, THONGKE_NHANKHAU_VIEW);
+    }
+
+    @FXML
+    void switchToThongKeCovid(MouseEvent event) {
+    	System.out.println("covid");
+    }
+
+    @FXML
+    void switchToThongKeHoKhau(MouseEvent event) {
+    	System.out.println("hokhau");
+    }
+
+    @FXML
+    void switchToThongKeTruVang(MouseEvent event) {
+    	System.out.println("tamtrutamvang");
     }
 }

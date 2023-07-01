@@ -117,7 +117,7 @@
       </Text>
       <DatePicker fx:id="ngaySinhDatePicker" layoutX="182.0" layoutY="103.0" prefHeight="26.0" prefWidth="127.0" />
       <ChoiceBox fx:id="gioiTinhChoiceBox" layoutX="181.0" layoutY="154.0" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: #3f4d67; -fx-border-radius: 10px;" />
-      <Button layoutX="527.0" layoutY="322.0" mnemonicParsing="false" onAction="#xemCccd" style="-fx-background-color: #3f4d67;" text="Xem" textFill="WHITE">
+      <Button fx:id="cccdBtn" layoutX="527.0" layoutY="322.0" mnemonicParsing="false" onAction="#xemCccd" style="-fx-background-color: #3f4d67;" text="Xem" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

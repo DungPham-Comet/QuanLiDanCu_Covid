@@ -30,6 +30,9 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DetailNhanKhauController implements Initializable {
+	
+    @FXML
+    private Button cccdBtn;
 
     @FXML
     private TextField cccdTextField;
@@ -82,7 +85,7 @@ public class DetailNhanKhauController implements Initializable {
     	noiThuongTruTextField.setText(nhanKhau.getThuongTru());
     	tonGiaoTextField.setText(nhanKhau.getTonGiao());
     	danTocTextField.setText(nhanKhau.getDanToc());
-    	ngheNghiepTextField.setText(nhanKhau.getNgheNghiep());  	
+    	ngheNghiepTextField.setText(nhanKhau.getNgheNghiep());	
     }
 
     public int getId(int id) {
@@ -160,6 +163,7 @@ public class DetailNhanKhauController implements Initializable {
         gioiTinhChoiceBox.getItems().add("Nam");
         gioiTinhChoiceBox.getItems().add("Nữ");
         gioiTinhChoiceBox.setValue("Nam");
+        
 	}
 
     @FXML

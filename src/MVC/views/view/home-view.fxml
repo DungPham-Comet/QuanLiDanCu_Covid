@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.HomeController">
    <left>
-      <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #3f4d67;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #3f4d67;" stylesheets="@../css/navigation-styles.css" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="-1.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="DASHBOARD" textAlignment="CENTER" textFill="WHITE" />
+            <Button id="menuButton" layoutX="-1.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="84.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="DASHBOARD" textAlignment="CENTER" textFill="WHITE" />
             <VBox layoutX="-1.0" layoutY="87.0" prefHeight="518.0" prefWidth="191.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#switchToNhanKhau" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="NHÂN KHẨU" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#switchToHoKhau" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="HỘ KHẨU" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#switchToTamTru" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="TẠM TRÚ" textAlignment="CENTER" textFill="#fffdfd" />
-                  <Button mnemonicParsing="false" onAction="#switchToTamVang" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="TẠM VẮNG" textAlignment="CENTER" textFill="#fffbfb" />
-                  <Button mnemonicParsing="false" onAction="#switchToKhaiTu" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="KHAI TỬ" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#switchToLichTrinh" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="LỊCH TRÌNH" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#switchToCachLy" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="CÁCH LY" textAlignment="CENTER" textFill="WHITE" />
-                  <Button mnemonicParsing="false" onAction="#switchToXetNghiem" prefHeight="48.0" prefWidth="191.0" style="-fx-background-color: #3f4d67;" text="XÉT NGHIỆM" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" fx:id="nhanKhauButton" mnemonicParsing="false" onAction="#switchToNhanKhau" prefHeight="48.0" prefWidth="191.0" text="NHÂN KHẨU" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" fx:id="hoKhauButton" mnemonicParsing="false" onAction="#switchToHoKhau" prefHeight="48.0" prefWidth="191.0" text="HỘ KHẨU" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" fx:id="tamTruButton" mnemonicParsing="false" onAction="#switchToTamTru" prefHeight="48.0" prefWidth="191.0" text="TẠM TRÚ" textAlignment="CENTER" textFill="#fffdfd" />
+                  <Button id="menuButton" fx:id="tamVangButton" mnemonicParsing="false" onAction="#switchToTamVang" prefHeight="48.0" prefWidth="191.0" text="TẠM VẮNG" textAlignment="CENTER" textFill="#fffbfb" />
+                  <Button id="menuButton" fx:id="khaiTuButton" mnemonicParsing="false" onAction="#switchToKhaiTu" prefHeight="48.0" prefWidth="191.0" text="KHAI TỬ" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" fx:id="lichTrinhButton" mnemonicParsing="false" onAction="#switchToLichTrinh" prefHeight="48.0" prefWidth="191.0" text="LỊCH TRÌNH" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" fx:id="cachLyButton" mnemonicParsing="false" onAction="#switchToCachLy" prefHeight="48.0" prefWidth="191.0" text="CÁCH LY" textAlignment="CENTER" textFill="WHITE" />
+                  <Button id="menuButton" mnemonicParsing="false" onAction="#switchToXetNghiem" prefHeight="48.0" prefWidth="191.0" text="XÉT NGHIỆM" textAlignment="CENTER" textFill="WHITE" fx:id="xetNghiemButton" />
                </children>
             </VBox>
          </children>
@@ -29,8 +33,82 @@
    <center>
       <AnchorPane fx:id="basePane" prefHeight="606.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="31.0" layoutY="21.0" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="274.0" layoutY="21.0" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="38.0" layoutY="190.0" onMouseClicked="#swichToThongKeNhanKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="268.0" layoutY="190.0" onMouseClicked="#switchToThongKeHoKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="50.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/user.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="289.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/house.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nhankhauLabel" alignment="BASELINE_CENTER" layoutX="138.0" layoutY="221.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="145.0" layoutY="280.0" text="Nhân khẩu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="hokhauLabel" alignment="BASELINE_CENTER" layoutX="380.0" layoutY="221.0" prefHeight="39.0" prefWidth="70.0" text="1000" textFill="#1bbde4">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="389.0" layoutY="280.0" text="Hộ khẩu">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="513.0" layoutX="489.0" layoutY="47.0" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="117.0" prefHeight="39.0" prefWidth="182.0" text="Hà Thái" textFill="#1bbde4">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="563.0" layoutY="164.0" mnemonicParsing="false" onAction="#logOut" text="Button" />
+            <Label fx:id="roleLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="77.0" prefHeight="39.0" prefWidth="182.0" text="Trưởng thôn">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="38.0" layoutY="410.0" onMouseClicked="#switchToThongKeTruVang" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="268.0" layoutY="410.0" onMouseClicked="#switchToThongKeCovid" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="38.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/decision-making.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="truVangLabel" layoutX="104.0" layoutY="504.0" text="Tạm trú-Tạm Vắng">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="BASELINE_CENTER" layoutX="138.0" layoutY="445.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="289.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/virus.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="covidLabel" alignment="BASELINE_CENTER" layoutX="374.0" layoutY="445.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label layoutX="386.0" layoutY="504.0" text="Ca nhiễm">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
