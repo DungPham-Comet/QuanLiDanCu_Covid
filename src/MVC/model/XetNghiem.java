@@ -6,15 +6,15 @@ public class XetNghiem {
 	private String hinhThuc;
 	private String thoiGian;
 	private String ketQua;
-	private int idNguoiXetNghiem;
+	private String tenNguoiXetNghiem;
 	
-	public XetNghiem(int idXetNghiem, String hinhThuc, String thoiGian, String ketQua, int idNguoiXetNghiem) {
+	public XetNghiem(int idXetNghiem, String hinhThuc, String thoiGian, String ketQua, String tenNguoiXetNghiem) {
 		super();
 		this.idXetNghiem = idXetNghiem;
 		this.hinhThuc = hinhThuc;
 		this.thoiGian = thoiGian;
 		this.ketQua = ketQua;
-		this.idNguoiXetNghiem = idNguoiXetNghiem;
+		this.tenNguoiXetNghiem = tenNguoiXetNghiem;
 	}
 
 	public int getIdXetNghiem() {
@@ -49,13 +49,12 @@ public class XetNghiem {
 		this.ketQua = ketQua;
 	}
 
-	public int getIdNguoiXetNghiem() {
-		return idNguoiXetNghiem;
+	public String getTenNguoiXetNghiem() {
+		return tenNguoiXetNghiem;
 	}
 
-	public void setIdNguoiXetNghiem(int idNguoiXetNghiem) {
-		this.idNguoiXetNghiem = idNguoiXetNghiem;
+	public void setTenNguoiXetNghiem(String tenNguoiXetNghiem) {
+		this.tenNguoiXetNghiem = tenNguoiXetNghiem;
 	}
-	
 	
 }
