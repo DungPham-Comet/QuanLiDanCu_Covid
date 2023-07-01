@@ -6,15 +6,15 @@ public class CachLy {
 	private String thoiGian;
 	private String mucDo;
 	private String diaDiem;
-	private int idNguoiCachLy;
+	private String nguoiCachLy;
 	
-	public CachLy(int idCachLy, String thoiGian, String mucDo, String diaDiem, int idNguoiCachLy) {
+	public CachLy(int idCachLy, String thoiGian, String mucDo, String diaDiem, String nguoiCachLy) {
 		super();
 		this.idCachLy = idCachLy;
 		this.thoiGian = thoiGian;
 		this.mucDo = mucDo;
 		this.diaDiem = diaDiem;
-		this.idNguoiCachLy = idNguoiCachLy;
+		this.nguoiCachLy = nguoiCachLy;
 	}
 
 	public int getIdCachLy() {
@@ -49,13 +49,15 @@ public class CachLy {
 		this.diaDiem = diaDiem;
 	}
 
-	public int getIdNguoiCachLy() {
-		return idNguoiCachLy;
+	public String getNguoiCachLy() {
+		return nguoiCachLy;
 	}
 
-	public void setIdNguoiCachLy(int idNguoiCachLy) {
-		this.idNguoiCachLy = idNguoiCachLy;
+	public void setNguoiCachLy(String nguoiCachLy) {
+		this.nguoiCachLy = nguoiCachLy;
 	}
+	
+	
 	
 	
 }

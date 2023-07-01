@@ -11,12 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import MVC.controller.khaitu.DetailKhaiTuController;
 import MVC.controller.ttdichuyen.TTDiChuyenController;
-import MVC.model.KhaiTu;
 import MVC.model.LichTrinh;
 import MVC.model.LichTrinh;
-import MVC.services.KhaiTuServices;
+import MVC.model.LichTrinh;
+import MVC.services.LichTrinhServices;
 import MVC.services.LichTrinhServices;
 import MVC.services.LichTrinhServices;
 import MVC.utils.ViewUtils;
@@ -24,6 +23,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -132,6 +132,7 @@ public class LichTrinhController implements Initializable{
             Scene scene = new Scene(studentViewParent);
             TTDiChuyenController controller = loader.getController();
             controller.setLichTrinh(selected);
+            System.out.println(selected.getIdLichTrinh());
             stage.setScene(scene);
     	}
 		
@@ -180,8 +181,13 @@ public class LichTrinhController implements Initializable{
 	}
 
     @FXML
-    void addLichTrinh(ActionEvent event) {
-
+    void addLichTrinh(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(ADD_LICHTRINH_VIEW));
+        Parent studentViewParent = loader.load();
+        Scene scene = new Scene(studentViewParent);
+        stage.setScene(scene);
     }
 
     @FXML
@@ -193,7 +199,7 @@ public class LichTrinhController implements Initializable{
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Xác nhận xóa thông tin");
-            alert.setContentText("Đồng chí muốn xóa thông tin khai tử này?");
+            alert.setContentText("Đồng chí muốn xóa lịch trình di chuyển này?");
             ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(okButton, noButton);
@@ -219,7 +225,64 @@ public class LichTrinhController implements Initializable{
 
     @FXML
     void search(MouseEvent event) {
+    	FilteredList<LichTrinh> filteredData = new FilteredList<>(lichTrinhList, p -> true);
+        lichTrinhSearchTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(lichTrinh -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (lichTrinh.getTenNguoiKhai().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            int soDu = filteredData.size() % ROWS_PER_PAGE;
+            if (soDu != 0) lichTrinhPagination.setPageCount(filteredData.size() / ROWS_PER_PAGE + 1);
+            else lichTrinhPagination.setPageCount(filteredData.size() / ROWS_PER_PAGE);
+            lichTrinhPagination.setMaxPageIndicatorCount(5);
+            lichTrinhPagination.setPageFactory(pageIndex -> {
+        		indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<LichTrinh, LichTrinh>, ObservableValue<LichTrinh>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+                indexColumn.setCellFactory(new Callback<TableColumn<LichTrinh, LichTrinh>, TableCell<LichTrinh, LichTrinh>>() {
+                    @Override
+                    public TableCell<LichTrinh, LichTrinh> call(TableColumn<LichTrinh, LichTrinh> param) {
+                        return new TableCell<LichTrinh, LichTrinh>() {
+                            @Override
+                            protected void updateItem(LichTrinh item, boolean empty) {
+                                super.updateItem(item, empty);
 
+                                if (this.getTableRow() != null && item != null) {
+                                    setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                                } else {
+                                    setText("");
+                                }
+                            }
+                        };
+                    }
+                });
+                indexColumn.setSortable(false);
+                nguoiKhaiColumn.setCellValueFactory(new PropertyValueFactory<LichTrinh, String>("tenNguoiKhai"));
+                diChuyenColumn.setCellValueFactory(new PropertyValueFactory<LichTrinh, String>("tenLichTrinh"));
+
+                int lastIndex = 0;
+                int displace = filteredData.size() % ROWS_PER_PAGE;
+                if (displace > 0) {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE;
+                } else {
+                    lastIndex = filteredData.size() / ROWS_PER_PAGE - 1;
+                }
+                if (filteredData.isEmpty()) lichTrinhTable.setItems(FXCollections.observableArrayList(filteredData));
+                else {
+                    if (lastIndex == pageIndex && displace > 0) {
+                        lichTrinhTable.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+                    } else {
+                        lichTrinhTable.setItems(FXCollections.observableArrayList(filteredData.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+                    }
+                }
+                return lichTrinhTable;
+            });
+        });
     }
 
 }

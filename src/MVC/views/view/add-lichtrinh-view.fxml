@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="394.0" prefWidth="710.0" stylesheets="@../../../../../Downloads/Project-IT3180-main/src/main/resources/com/quartermanagement/styles/table.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.lichtrinh.AddLichTrinhController">
+   <children>
+      <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="22.0" prefHeight="35.0" prefWidth="215.0" text="Thêm mới lịch trình">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="119.0" prefHeight="27.0" prefWidth="90.0" text="Người khai">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nguoiKhaiTextField" layoutX="215.0" layoutY="118.0" prefHeight="30.0" prefWidth="309.0" promptText="Phạm Trung Dũng">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="71.0" layoutY="177.0" prefHeight="27.0" prefWidth="90.0" text="Lịch trình">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="lichTrinhTextField" layoutX="217.0" layoutY="176.0" prefHeight="30.0" prefWidth="310.0" promptText="Hà Nội - Hải Dương">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="addTTDiChuyenButton" layoutX="484.0" layoutY="303.0" mnemonicParsing="false" onAction="#addTTDiChuyen" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="returnButton" layoutX="602.0" layoutY="303.0" mnemonicParsing="false" onAction="#returnToLichTrinh" style="-fx-background-color: #3f4d67;" text="Quay lại" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="nguoiKhaiButton" layoutX="550.0" layoutY="119.0" mnemonicParsing="false" onAction="#chonNguoiKhai" style="-fx-background-color: #3f4d67;" text="Chọn người khai" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
