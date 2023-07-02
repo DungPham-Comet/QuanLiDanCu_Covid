@@ -44,11 +44,11 @@ public class ThongKeCovidController implements Initializable {
     void viewChart(ActionEvent event) {
     	fromdate = fromDatePicker.getValue().toString();
     	
-    	f0Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "f0"));
-    	f1Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "f1"));
-    	f2Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "f2"));
+    	f0Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "F0"));
+    	f1Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "F1"));
+    	f2Series.getData().get(0).setYValue(CachLyServices.getTotalMucDoByDate(fromdate, "F2"));
     	
-    	tainhaSeries.getData().get(0).setYValue(CachLyServices.getTotalHinhThucByDate(fromdate, "tại nhà"));
+    	tainhaSeries.getData().get(0).setYValue(CachLyServices.getTotalHinhThucByDate(fromdate, "Tại nhà"));
     	khucachlySeries.getData().get(0).setYValue(CachLyServices.getTotalHinhThucByDate(fromdate, "khu cách ly"));
     }
 
@@ -60,15 +60,15 @@ public class ThongKeCovidController implements Initializable {
 		f0Series.setName("F0");
 		f1Series.setName("F1");
 		f2Series.setName("F2");
-		f0Series.getData().add(new XYChart.Data<String, Integer>("F0", CachLyServices.getTotalMucDoByDate(fromdate, "f0")));
-		f1Series.getData().add(new XYChart.Data<String, Integer>("F1", CachLyServices.getTotalMucDoByDate(fromdate, "f1")));
-		f2Series.getData().add(new XYChart.Data<String, Integer>("F2", CachLyServices.getTotalMucDoByDate(fromdate, "f2")));
+		f0Series.getData().add(new XYChart.Data<String, Integer>("F0", CachLyServices.getTotalMucDoByDate(fromdate, "F0")));
+		f1Series.getData().add(new XYChart.Data<String, Integer>("F1", CachLyServices.getTotalMucDoByDate(fromdate, "F1")));
+		f2Series.getData().add(new XYChart.Data<String, Integer>("F2", CachLyServices.getTotalMucDoByDate(fromdate, "F2")));
 		mucDoBarChart.getData().addAll(f0Series,f1Series,f2Series);
 		
 		tainhaSeries.setName("Tại nhà");
 		khucachlySeries.setName("Khu cách ly");
-		tainhaSeries.getData().add(new XYChart.Data<String, Integer>("Tại Nhà", CachLyServices.getTotalHinhThucByDate(fromdate, "tại nhà")));
-		khucachlySeries.getData().add(new XYChart.Data<String, Integer>("Tại Nhà", CachLyServices.getTotalHinhThucByDate(fromdate, "khu cách ly")));
+		tainhaSeries.getData().add(new XYChart.Data<String, Integer>("Tại Nhà", CachLyServices.getTotalHinhThucByDate(fromdate, "Tại nhà")));
+		khucachlySeries.getData().add(new XYChart.Data<String, Integer>("Khu cách ly", CachLyServices.getTotalCovid(fromdate)-CachLyServices.getTotalHinhThucByDate(fromdate, "Tại nhà")));
 		
 		hinhThucBarChart.getData().addAll(tainhaSeries,khucachlySeries);
 	}

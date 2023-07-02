@@ -138,9 +138,9 @@ public class HomeController implements Initializable {
 			roleLabel.setText("Cán bộ");
 		}
 		usernameLabel.setText(userName);
-		nhankhauLabel.setText(""+NhanKhauServices.getTotalNhanKhau());
+		nhankhauLabel.setText(""+NhanKhauServices.getTotalNhanKhau("2023"));
 		hokhauLabel.setText(""+HoKhauServices.getTotalSoHoKhau());
-		covidLabel.setText(""+CachLyServices.getTotalCovid());
+		covidLabel.setText(""+CachLyServices.getTotalCovid(LocalDate.now().toString()));
 		truVangLabel.setText(""+(TamTruServices.getTotalTamTruByDate(LocalDate.now().toString(), LocalDate.now().toString())+TamVangServices.getTotalTamVangByDate(LocalDate.now().toString(), LocalDate.now().toString())));
 	}
 	
