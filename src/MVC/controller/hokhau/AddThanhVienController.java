@@ -102,12 +102,19 @@ public class AddThanhVienController implements Initializable {
 	}
 
 	@FXML
-    void chon(ActionEvent event) throws IOException {
+    void chon(ActionEvent event) throws IOException, SQLException {
     	NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
     	if(selected == null) {
     		createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một nhân khẩu");
     	}
     	else {
+    		if(HoKhauServices.checkThanhVien(selected.getIdNhanKhau(), hoKhau.getIdHoKhau()) == 1) {
+				createDialog(
+						Alert.AlertType.ERROR,
+                        "Thất bại",
+                        "", "Thành viên đã tồn tại, mời đồng chí nhập lại thông tin!");
+    		}
+    		else {
             TextInputDialog dialog = new TextInputDialog();
             dialog.setTitle("Nhập thông tin Quan hệ với chủ hộ");
             dialog.setHeaderText("Quan hệ với chủ hộ:");
@@ -135,7 +142,7 @@ public class AddThanhVienController implements Initializable {
 					e.printStackTrace();
 				}
             });
-    	}
+    		}}
     }
 
     @SuppressWarnings("unchecked")

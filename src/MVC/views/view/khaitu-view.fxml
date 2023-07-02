@@ -9,37 +9,37 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.khaitu.KhaiTuController">
+<AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.khaitu.KhaiTuController">
    <children>
-      <Pagination fx:id="pagination" layoutX="45.0" layoutY="216.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="376.0" prefWidth="622.0" />
-      <Label accessibleRoleDescription=" " alignment="TOP_LEFT" layoutX="44.0" layoutY="26.0" prefHeight="35.0" prefWidth="127.0" text="Khai tử">
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="175.0" maxPageIndicatorCount="100" pageCount="3" prefHeight="410.0" prefWidth="634.0" />
+      <Label accessibleRoleDescription=" " alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="127.0" text="Khai tử">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="482.0" layoutY="126.0" mnemonicParsing="false" onAction="#addKhaiTu" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button layoutX="484.0" layoutY="129.0" mnemonicParsing="false" onAction="#addKhaiTu" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="607.0" layoutY="126.0" mnemonicParsing="false" onAction="#deleteKhaiTu" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
+      <Button layoutX="613.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteKhaiTu" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="searchTextField" layoutX="44.0" layoutY="103.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="searchTextField" layoutX="38.0" layoutY="87.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <TableView fx:id="tableKhaiTu" layoutX="44.0" layoutY="174.0" prefHeight="367.0" prefWidth="622.0" stylesheets="@../css/table.css">
+      <TableView fx:id="tableKhaiTu" layoutX="38.0" layoutY="175.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../css/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="46.40003967285156" text="#" />
             <TableColumn fx:id="nguoiChetCol" prefWidth="125.60003662109375" text="Người mất" />
             <TableColumn fx:id="nguoiKhaiCol" prefWidth="119.19996643066406" text="Người khai" />
             <TableColumn fx:id="ngayChetCol" prefWidth="124.00006103515625" text="Ngày mất" />
             <TableColumn fx:id="lyDoCol" minWidth="0.0" prefWidth="99.20001220703125" text="Lý do" />
-            <TableColumn fx:id="ngayKhaiCol" prefWidth="107.2000732421875" text="Ngày khai" />
+            <TableColumn fx:id="ngayKhaiCol" prefWidth="115.99997558593748" text="Ngày khai" />
          </columns>
       </TableView>
    </children>

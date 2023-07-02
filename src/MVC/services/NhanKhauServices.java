@@ -79,8 +79,8 @@ public class NhanKhauServices {
     	return preparedStatement.executeUpdate();
     }
     public static int updateNhanKhau(Connection conn, String HoTen, String ngaySinh, String nguyenQuan, boolean gioiTinh,
-        String danToc, String thuongTru, String tonGiao, String quocTich, String ngheNghiep, int id) throws SQLException {
-    	String UPDATE_QUERY = "UPDATE `nhankhau` SET `HoTen`=?, `DOB`=?, `GioiTinh`=?, `NguyenQuan`=?, `DanToc`=?, `TonGiao`=?, `QuocTich`=?, `ThuongTru`=?, `NgheNghiep`=?" +
+        String danToc, String thuongTru, String tonGiao, String quocTich, String ngheNghiep, String cccd, int id) throws SQLException {
+    	String UPDATE_QUERY = "UPDATE `nhankhau` SET `HoTen`=?, `DOB`=?, `GioiTinh`=?, `NguyenQuan`=?, `DanToc`=?, `TonGiao`=?, `QuocTich`=?, `ThuongTru`=?, `NgheNghiep`=?, `MaCccd`=?" +
 				"WHERE `IdNhanKhau`=?";
     	PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY);
     	preparedStatement.setString(1, HoTen);
@@ -96,7 +96,9 @@ public class NhanKhauServices {
     	preparedStatement.setString(8, thuongTru);
     	if(ngheNghiep.equals("")) preparedStatement.setString(9, "Không");
     	else preparedStatement.setString(9, ngheNghiep);
-    	preparedStatement.setInt(10, id);
+    	if(cccd.equals("")) preparedStatement.setString(10, "");
+    	else preparedStatement.setString(10, cccd);
+    	preparedStatement.setInt(11, id);
     	preparedStatement.execute();
     	return preparedStatement.executeUpdate();
     }

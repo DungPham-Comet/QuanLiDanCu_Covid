@@ -68,6 +68,21 @@ public class CachLyServices {
         }
         return total;
     }
+    public static int getTotalCovid() {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM cachly";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
     public static int getTotalHinhThucByDate(String fromdate, String hinhthuc) {
         int total = 0;
         String GET_QUERY = "SELECT COUNT(*) FROM cachly WHERE cachly.DiaDiem = ? AND cachly.ThoiGian <= ?";

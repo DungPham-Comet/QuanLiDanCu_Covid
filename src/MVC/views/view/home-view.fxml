@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -33,46 +34,49 @@
    <center>
       <AnchorPane fx:id="basePane" prefHeight="606.0" prefWidth="710.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="38.0" layoutY="190.0" onMouseClicked="#swichToThongKeNhanKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="268.0" layoutY="190.0" onMouseClicked="#switchToThongKeHoKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
-            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="50.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="38.0" layoutY="214.0" onMouseClicked="#swichToThongKeNhanKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="268.0" layoutY="214.0" onMouseClicked="#switchToThongKeHoKhau" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="50.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icon/user.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="289.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="95.0" fitWidth="79.0" layoutX="289.0" layoutY="245.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icon/house.png" />
                </image>
             </ImageView>
-            <Label fx:id="nhankhauLabel" alignment="BASELINE_CENTER" layoutX="138.0" layoutY="221.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+            <Label fx:id="nhankhauLabel" alignment="BASELINE_CENTER" layoutX="138.0" layoutY="245.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label layoutX="145.0" layoutY="280.0" text="Nhân khẩu">
+            <Label layoutX="145.0" layoutY="304.0" text="Nhân khẩu">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="hokhauLabel" alignment="BASELINE_CENTER" layoutX="380.0" layoutY="221.0" prefHeight="39.0" prefWidth="70.0" text="1000" textFill="#1bbde4">
+            <Label fx:id="hokhauLabel" alignment="BASELINE_CENTER" layoutX="380.0" layoutY="245.0" prefHeight="39.0" prefWidth="70.0" text="1000" textFill="#1bbde4">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <Label layoutX="389.0" layoutY="280.0" text="Hộ khẩu">
+            <Label layoutX="389.0" layoutY="304.0" text="Hộ khẩu">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="513.0" layoutX="489.0" layoutY="47.0" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
-            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="117.0" prefHeight="39.0" prefWidth="182.0" text="Hà Thái" textFill="#1bbde4">
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="192.0" prefHeight="39.0" prefWidth="182.0" text="Hà Thái" textFill="#1bbde4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="563.0" layoutY="164.0" mnemonicParsing="false" onAction="#logOut" text="Button" />
-            <Label fx:id="roleLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="77.0" prefHeight="39.0" prefWidth="182.0" text="Trưởng thôn">
+            <Button layoutX="503.0" layoutY="487.0" mnemonicParsing="false" onAction="#logOut" prefHeight="54.0" prefWidth="171.0" style="-fx-background-color: #1bbde4;" text="Đăng xuất" textFill="#f7f7f7">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Label fx:id="roleLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="150.0" prefHeight="39.0" prefWidth="182.0" text="Trưởng thôn" textFill="#16859e">
                <font>
                   <Font size="20.0" />
                </font>
@@ -84,12 +88,12 @@
                   <Image url="@../icon/decision-making.png" />
                </image>
             </ImageView>
-            <Label fx:id="truVangLabel" layoutX="104.0" layoutY="504.0" text="Tạm trú-Tạm Vắng">
+            <Label layoutX="104.0" layoutY="504.0" text="Tạm trú-Tạm Vắng">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label alignment="BASELINE_CENTER" layoutX="138.0" layoutY="445.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+            <Label fx:id="truVangLabel" alignment="BASELINE_CENTER" layoutX="138.0" layoutY="445.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                <font>
                   <Font size="27.0" />
                </font>
@@ -109,6 +113,23 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label layoutX="188.0" layoutY="47.0" text="Nhóm 22" textFill="#209fbc">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="78.0" layoutY="109.0" text="Phần mềm quản lý dân cư" textFill="#209fbc">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="BASELINE_CENTER" layoutX="497.0" layoutY="93.0" prefHeight="39.0" prefWidth="182.0" text="Welcome back" textFill="#903be4">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Line endX="50.0" layoutX="588.0" layoutY="240.0" startX="-50.0" stroke="#b9bdbf" />
+            <Line endX="50.0" layoutX="588.0" layoutY="303.0" startX="-50.0" stroke="#b9bdbf" />
          </children>
       </AnchorPane>
    </center>

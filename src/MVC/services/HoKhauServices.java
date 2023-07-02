@@ -96,7 +96,20 @@ public class HoKhauServices {
         preparedStatement.setInt(2, idHoKhau);
         return preparedStatement.executeUpdate();    	
     }
-    
+    public static int checkThanhVien(int idNhanKhau, int idHoKhau) throws SQLException {
+    	int check = 0;
+        PreparedStatement preparedStatement = null;
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String SELECT_QUERY = "SELECT COUNT(*) AS dem FROM thanhvienho WHERE thanhvienho.IdNhanKhau = ? AND thanhvienho.IdHoKhau = ?";
+        preparedStatement = conn.prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, idNhanKhau);
+        preparedStatement.setInt(2, idHoKhau);
+        ResultSet result = preparedStatement.executeQuery();
+        if (result.next()) {
+            check = result.getInt("dem");
+        }
+    	return check;
+    }
     public static int getTotalSoHoKhau() {
         int total = 0;
         String GET_QUERY = "SELECT COUNT(*) FROM sohokhau";

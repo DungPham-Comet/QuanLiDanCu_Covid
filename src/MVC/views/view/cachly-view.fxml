@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.cachly.CachLyController">
+<AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.cachly.CachLyController">
    <children>
-      <TableView fx:id="tableCachLy" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0" stylesheets="@../css/table.css">
+      <TableView fx:id="tableCachLy" layoutX="38.0" layoutY="175.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../css/table.css">
          <columns>
             <TableColumn fx:id="indexCol" prefWidth="55.19997787475586" text="#" />
             <TableColumn fx:id="nguoiCachLyCol" prefWidth="170.40003967285156" text="Người cách ly" />
@@ -22,31 +22,31 @@
             <TableColumn fx:id="thoiGianCol" prefWidth="163.20001220703125" text="Thời gian" />
          </columns>
       </TableView>
-      <Label alignment="TOP_LEFT" layoutX="39.0" layoutY="29.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
+      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="34.0" prefHeight="35.0" prefWidth="90.0" text="Cách ly">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="deleteCachLyButton" layoutX="611.0" layoutY="140.0" mnemonicParsing="false" onAction="#deleteCachLy" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
+      <Button fx:id="deleteCachLyButton" layoutX="613.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteCachLy" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xóa" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addCachLyButton" accessibleRoleDescription=" " layoutX="490.0" layoutY="140.0" mnemonicParsing="false" onAction="#addCachLy" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+      <Button fx:id="addCachLyButton" accessibleRoleDescription=" " layoutX="484.0" layoutY="129.0" mnemonicParsing="false" onAction="#addCachLy" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <RadioButton fx:id="nameRadioButton" layoutX="46.0" layoutY="145.0" mnemonicParsing="false" selected="true" text="Theo tên">
+      <RadioButton fx:id="nameRadioButton" layoutX="38.0" layoutY="134.0" mnemonicParsing="false" selected="true" text="Theo tên">
          <toggleGroup>
             <ToggleGroup fx:id="group" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="mucDoRadioButton" layoutX="135.0" layoutY="145.0" mnemonicParsing="false" text="Theo mức độ" toggleGroup="$group" />
-      <TextField fx:id="searchTextField" layoutX="39.0" layoutY="90.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <RadioButton fx:id="mucDoRadioButton" layoutX="128.0" layoutY="134.0" mnemonicParsing="false" text="Theo mức độ" toggleGroup="$group" />
+      <TextField fx:id="searchTextField" layoutX="38.0" layoutY="87.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Tìm kiếm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Pagination fx:id="pagination" layoutX="37.0" layoutY="187.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="424.0" prefWidth="631.0" />
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="175.0" maxPageIndicatorCount="3" pageCount="100" prefHeight="410.0" prefWidth="634.0" />
    </children>
 </AnchorPane>
