@@ -67,7 +67,7 @@
                </font>
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="513.0" layoutX="489.0" layoutY="47.0" stroke="#b9bdbf" strokeType="INSIDE" width="200.0" />
-            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="192.0" prefHeight="39.0" prefWidth="182.0" text="Hà Thái" textFill="#1bbde4">
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="192.0" prefHeight="39.0" prefWidth="182.0" text="Dũng Phạm" textFill="#1bbde4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -118,7 +118,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label layoutX="78.0" layoutY="109.0" text="Phần mềm quản lý dân cư" textFill="#209fbc">
+            <Label layoutX="31.0" layoutY="109.0" text="Cơ sở dữ liệu Quốc gia về dân cư" textAlignment="CENTER" textFill="#209fbc">
                <font>
                   <Font size="30.0" />
                </font>
@@ -130,6 +130,11 @@
             </Label>
             <Line endX="50.0" layoutX="588.0" layoutY="240.0" startX="-50.0" stroke="#b9bdbf" />
             <Line endX="50.0" layoutX="588.0" layoutY="303.0" startX="-50.0" stroke="#b9bdbf" />
+            <Label alignment="BASELINE_CENTER" layoutX="497.0" layoutY="249.0" prefHeight="39.0" prefWidth="182.0" text="HỆ THỐNG QUẢN LÍ DÂN CƯ" textFill="#5c7878">
+               <font>
+                  <Font name="System Italic" size="13.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </center>
