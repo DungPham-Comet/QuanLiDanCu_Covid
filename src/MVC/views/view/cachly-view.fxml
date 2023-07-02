@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="606.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.controller.cachly.CachLyController">
    <children>
-      <TableView fx:id="tableCachLy" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0">
+      <TableView fx:id="tableCachLy" layoutX="39.0" layoutY="191.0" prefHeight="353.0" prefWidth="631.0" stylesheets="@../css/table.css">
          <columns>
             <TableColumn fx:id="indexCol" prefWidth="55.19997787475586" text="#" />
             <TableColumn fx:id="nguoiCachLyCol" prefWidth="170.40003967285156" text="Người cách ly" />
