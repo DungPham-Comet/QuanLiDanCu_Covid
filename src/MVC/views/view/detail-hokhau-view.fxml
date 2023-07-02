@@ -62,17 +62,17 @@
             <TableColumn fx:id="quanHeColumn" prefWidth="206.4000244140625" text="Quan hệ với chủ hộ" />
          </columns>
       </TableView>
-      <Button fx:id="addThanhVienBtn" layoutX="28.0" layoutY="558.0" mnemonicParsing="false" onAction="#addthanhvien" prefHeight="28.0" prefWidth="74.0" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
+      <Button fx:id="addThanhVienBtn" layoutX="489.0" layoutY="228.0" mnemonicParsing="false" onAction="#addthanhvien" prefHeight="28.0" prefWidth="74.0" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="updateThanhVienBtn" layoutX="188.0" layoutY="558.0" mnemonicParsing="false" onAction="#updatethanhvien" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
+      <Button fx:id="updateThanhVienBtn" layoutX="25.0" layoutY="558.0" mnemonicParsing="false" onAction="#updatethanhvien" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="deleteThanhVienBtn" layoutX="107.0" layoutY="558.0" mnemonicParsing="false" onAction="#deletethanhvien" prefHeight="28.0" prefWidth="75.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
+      <Button fx:id="deleteThanhVienBtn" layoutX="583.0" layoutY="229.0" mnemonicParsing="false" onAction="#deletethanhvien" prefHeight="28.0" prefWidth="75.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
@@ -87,7 +87,12 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="doiChuHoBtn" layoutX="273.0" layoutY="558.0" mnemonicParsing="false" onAction="#doiChuHo" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #3f4d67;" text="Đổi chủ hộ" textFill="WHITE">
+      <Button fx:id="doiChuHoBtn" layoutX="120.0" layoutY="558.0" mnemonicParsing="false" onAction="#doiChuHo" prefHeight="28.0" prefWidth="96.0" style="-fx-background-color: #3f4d67;" text="Đổi chủ hộ" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+      <Button layoutX="236.0" layoutY="558.0" mnemonicParsing="false" onAction="#tachHoKhau" prefHeight="28.0" prefWidth="106.0" style="-fx-background-color: #3f4d67;" text="Tách hộ khẩu" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

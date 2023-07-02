@@ -30,12 +30,12 @@
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="382.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CCCD" wrappingWidth="56.5140380859375">
+      <Text layoutX="37.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CCCD" wrappingWidth="56.5140380859375">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="cccdTextField" layoutX="512.0" layoutY="99.0" prefHeight="30.0" prefWidth="127.0" promptText="CCCD" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="cccdTextField" layoutX="183.0" layoutY="358.0" prefHeight="30.0" prefWidth="255.0" promptText="CCCD" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
@@ -45,12 +45,12 @@
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="75.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên quán" wrappingWidth="114.91400146484375">
+      <Text layoutX="38.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyên quán" wrappingWidth="114.91400146484375">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="nguyenQuanTextField" layoutX="252.0" layoutY="384.0" prefHeight="30.0" prefWidth="344.0" promptText="Nguyên quán" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="nguyenQuanTextField" layoutX="183.0" layoutY="256.0" prefHeight="30.0" prefWidth="344.0" promptText="Nguyên quán" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
@@ -65,22 +65,22 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Text layoutX="77.0" layoutY="465.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi thường trú" wrappingWidth="126.91407012939453">
+      <Text layoutX="38.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi thường trú" wrappingWidth="126.91407012939453">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="noiThuongTruTextField" layoutX="251.0" layoutY="443.0" prefHeight="30.0" prefWidth="344.0" promptText="Nơi thường trú" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="noiThuongTruTextField" layoutX="183.0" layoutY="307.0" prefHeight="30.0" prefWidth="344.0" promptText="Nơi thường trú" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Text layoutX="39.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tôn giáo" textAlignment="CENTER" wrappingWidth="72.5140380859375">
+      <Text layoutX="374.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tôn giáo" textAlignment="CENTER" wrappingWidth="72.5140380859375">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="tonGiaoTextField" layoutX="182.0" layoutY="262.0" prefHeight="30.0" prefWidth="127.0" promptText="Tôn giáo" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="tonGiaoTextField" layoutX="511.0" layoutY="99.0" prefHeight="30.0" prefWidth="127.0" promptText="Tôn giáo" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
@@ -95,7 +95,7 @@
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Text layoutX="42.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nghề nghiệp" wrappingWidth="107.7139892578125">
+      <Text layoutX="41.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nghề nghiệp" wrappingWidth="107.7139892578125">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
@@ -117,5 +117,42 @@
       </Text>
       <DatePicker fx:id="ngaySinhDatePicker" layoutX="182.0" layoutY="103.0" prefHeight="26.0" prefWidth="127.0" />
       <ChoiceBox fx:id="gioiTinhChoiceBox" layoutX="181.0" layoutY="154.0" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: transparent; -fx-border-color: #3f4d67; -fx-border-radius: 10px;" />
+      <Button layoutX="462.0" layoutY="359.0" mnemonicParsing="false" onAction="#addCccd" style="-fx-background-color: #3f4d67;" text="Thêm" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+      <Text fx:id="ngayCapLabel" layoutX="34.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày cấp" visible="false" wrappingWidth="95.71405029296875">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="ngayCapDatePicker" layoutX="182.0" layoutY="407.0" prefHeight="26.0" prefWidth="127.0" visible="false" />
+      <Text fx:id="ngayHetLabel" layoutX="374.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày hết hạn" visible="false" wrappingWidth="107.71398925781239">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="ngayHetDatePicker" layoutX="518.0" layoutY="407.0" prefHeight="26.0" prefWidth="127.0" visible="false" />
+      <Text fx:id="noiCapLabel" layoutX="37.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nơi cấp" visible="false" wrappingWidth="95.71405029296875">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="noiCapTextField" layoutX="181.0" layoutY="449.0" prefHeight="30.0" prefWidth="255.0" promptText="Nơi cấp" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;" visible="false">
+         <font>
+            <Font name="Segoe UI Italic" size="14.0" />
+         </font>
+      </TextField>
+      <Text fx:id="dacDiemLabel" layoutX="34.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đặc điểm" visible="false" wrappingWidth="85.31402587890614">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="dacDiemTextField" layoutX="180.0" layoutY="499.0" prefHeight="30.0" prefWidth="255.0" promptText="Đặc điểm" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;" visible="false">
+         <font>
+            <Font name="Segoe UI Italic" size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -144,17 +144,17 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void switchToThongKeCovid(MouseEvent event) {
-    	System.out.println("covid");
+    void switchToThongKeCovid(MouseEvent event) throws IOException {
+    	viewUtils.changeAnchorPane(basePane, THONGKE_COVID_VIEW);
     }
 
     @FXML
-    void switchToThongKeHoKhau(MouseEvent event) {
-    	System.out.println("hokhau");
+    void switchToThongKeHoKhau(MouseEvent event) throws IOException {
+    	viewUtils.changeAnchorPane(basePane, THONGKE_HOKHAU_VIEW);
     }
 
     @FXML
-    void switchToThongKeTruVang(MouseEvent event) {
-    	System.out.println("tamtrutamvang");
+    void switchToThongKeTruVang(MouseEvent event) throws IOException {
+    	viewUtils.changeAnchorPane(basePane, THONGKE_TRU_VANG_VIEW);
     }
 }

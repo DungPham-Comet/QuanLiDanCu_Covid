@@ -59,6 +59,30 @@ public class AddNhanKhauController implements Initializable {
 
     @FXML
     private TextField tonGiaoTextField;
+    
+    @FXML
+    private Text dacDiemLabel;
+    
+    @FXML
+    private TextField dacDiemTextField;
+    
+    @FXML
+    private DatePicker ngayCapDatePicker;
+
+    @FXML
+    private Text ngayCapLabel;
+    
+    @FXML
+    private DatePicker ngayHetDatePicker;
+
+    @FXML
+    private Text ngayHetLabel;
+    
+    @FXML
+    private Text noiCapLabel;
+
+    @FXML
+    private TextField noiCapTextField;
 
     @FXML
     void add(ActionEvent event) throws IOException {
@@ -78,6 +102,18 @@ public class AddNhanKhauController implements Initializable {
     		String tonGiao = tonGiaoTextField.getText();
     		String quocTich = quocTichTextField.getText();
     		String ngheNghiep = ngheNghiepTextField.getText();
+    		String ngayCap;
+    		String ngayHetHan;
+    		if(cccd.equals("")) {
+    			ngayCap = "";
+    			ngayHetHan = "";
+    		}
+    		else {
+				ngayCap = ngayCapDatePicker.getValue().toString();
+				ngayHetHan = ngayHetDatePicker.getValue().toString();
+			}
+    		String noiCap = noiCapTextField.getText();
+    		String dacDiem = dacDiemTextField.getText();
     		if(hoTen.trim().equals("") || ngaySinh.trim().equals("") || gioiTinh.trim().equals("") || nguyenQuan.trim().equals("") || thuongTru.trim().equals("")) {
     			createDialog(
     					Alert.AlertType.WARNING,
@@ -92,7 +128,10 @@ public class AddNhanKhauController implements Initializable {
     			else gioitinh = false;
     			try {
     				Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-    				int result = NhanKhauServices.addNhanKhau(conn, hoTen, ngaySinh, nguyenQuan, gioitinh, danToc, thuongTru, tonGiao, quocTich, ngheNghiep);
+    				int result = NhanKhauServices.addNhanKhau(conn, hoTen, ngaySinh, nguyenQuan, gioitinh, danToc, thuongTru, tonGiao, quocTich, ngheNghiep, cccd);
+    				if(cccd.equals("") == false) {
+    					int result2 = NhanKhauServices.addCccd(conn, cccd, ngayCap, ngayHetHan, noiCap, dacDiem);
+    				}
     				if(result == 1) {
     					createDialog(
     							Alert.AlertType.CONFIRMATION,
@@ -114,6 +153,18 @@ public class AddNhanKhauController implements Initializable {
     	}
     }
 
+    @FXML
+    void addCccd(ActionEvent event) {
+    	ngayCapLabel.setVisible(true);
+    	ngayCapDatePicker.setVisible(true);
+    	ngayHetLabel.setVisible(true);
+    	ngayHetDatePicker.setVisible(true);
+    	noiCapLabel.setVisible(true);
+    	noiCapTextField.setVisible(true);
+    	dacDiemLabel.setVisible(true);
+    	dacDiemTextField.setVisible(true);
+    }
+    
     @FXML
     void goBack(ActionEvent event) throws IOException {
     	ViewUtils viewUtils = new ViewUtils();

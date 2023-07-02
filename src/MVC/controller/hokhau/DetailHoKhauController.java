@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import MVC.controller.nhankhau.ChonNhanKhauController;
@@ -277,4 +278,56 @@ public class DetailHoKhauController {
     	}
     }
 
+    @FXML
+    void tachHoKhau(ActionEvent event) {
+    	ThanhVienCuaHo selected = thanhVienTable.getSelectionModel().getSelectedItem();
+    	if (selected == null) createDialog(Alert.AlertType.WARNING,
+                "Cảnh báo",
+                "Vui lòng chọn nhân khẩu để tiếp tục", "");
+    	else if(selected.getQuanHeChuHo().equals("chủ hộ")) {
+    		createDialog(Alert.AlertType.WARNING,
+                    "Cảnh báo",
+                    "Vui lòng chọn nhân khẩu khác hoặc đổi chủ hộ để tiếp tục", "");
+    	}
+    	else {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Nhập thông tin địa chỉ mới");
+            dialog.setHeaderText("Địa chỉ mới:");
+            dialog.setContentText("Địa chỉ mới:");
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(diachi -> {
+            	try {
+                    Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+                    int delrs = HoKhauServices.deleteThanhVien(selected.getIdNhanKhau());
+                    int rs = HoKhauServices.addHoKhau(conn, LocalDate.now().toString(), diachi, selected.getIdNhanKhau());
+                    int addrs = HoKhauServices.addThanhVienHo(conn, selected.getIdNhanKhau(), HoKhauServices.getHoKhauByChuHo(conn, selected.getIdNhanKhau()), "chủ hộ");
+                    if(rs == 1) {
+    					createDialog( 
+    							Alert.AlertType.CONFIRMATION,
+                                "Thành công",
+                                "", "Đồng chí vất vả rồi!");
+    					SoHoKhau hokhaumoi = new SoHoKhau(HoKhauServices.getHoKhauByChuHo(conn, selected.getIdNhanKhau()), LocalDate.now().toString(), diachi, NhanKhauServices.getNhanKhauById(conn, selected.getIdNhanKhau()), 1);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        FXMLLoader loader = new FXMLLoader();
+                        loader.setLocation(getClass().getResource(DETAIL_HOKHAU_VIEW));
+                        Parent studentViewParent = loader.load(); 
+                        Scene scene = new Scene(studentViewParent);
+                        DetailHoKhauController controller = loader.getController();
+                        controller.setHoKhau(hokhaumoi);
+                        stage.setScene(scene);
+                    }
+                    else {
+    					createDialog(
+    							Alert.AlertType.ERROR,
+                                "Thất bại",
+                                "", "Oops, mời đồng chí nhập lại thông tin!");
+                    }
+                    conn.close();
+                    
+				} catch (SQLException | IOException e) {
+					e.printStackTrace();
+				}
+            });    		
+    	}
+    }
 }

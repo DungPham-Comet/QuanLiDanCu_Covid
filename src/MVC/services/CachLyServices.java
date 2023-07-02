@@ -51,4 +51,38 @@ public class CachLyServices {
     	preparedStatement.setString(4, diaDiem);
     	return preparedStatement.executeUpdate();
     }
+    public static int getTotalMucDoByDate(String fromdate, String mucdo) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM cachly WHERE cachly.MucDo = ? AND cachly.ThoiGian <= ?";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setString(1, mucdo);
+            preparedStatement.setString(2, fromdate);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+    public static int getTotalHinhThucByDate(String fromdate, String hinhthuc) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM cachly WHERE cachly.DiaDiem = ? AND cachly.ThoiGian <= ?";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setString(1, hinhthuc);
+            preparedStatement.setString(2, fromdate);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
 }
