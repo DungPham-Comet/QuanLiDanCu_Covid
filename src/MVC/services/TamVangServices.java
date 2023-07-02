@@ -36,4 +36,25 @@ public class TamVangServices {
         preparedStatement.setInt(1, idTamVang);
         return preparedStatement.executeUpdate();		
 	}
+    public static int getTotalTamVangByDate(String fromdate, String todate) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM tamvang WHERE (? <= tamvang.NgayTao AND tamvang.NgayTao <= ?) OR  (? <= tamvang.NgayKetThuc AND tamvang.NgayKetThuc <= ?) OR (tamvang.NgayTao <= ? AND tamvang.NgayKetThuc >= ?)";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setString(1, fromdate);
+            preparedStatement.setString(2, todate);
+            preparedStatement.setString(3, fromdate);
+            preparedStatement.setString(4, todate);
+            preparedStatement.setString(5, fromdate);
+            preparedStatement.setString(6, todate);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
 }

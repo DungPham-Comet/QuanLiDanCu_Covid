@@ -143,7 +143,10 @@ public class NhanKhauController implements Initializable {
                     // Delete in Database
                     try {
                         int ID = selected.getIdNhanKhau();
-                        int result1 = NhanKhauServices.deleteNhanKhauViaCCCD(ID);
+                        String cccdId = selected.getMaCccd();
+                        if(cccdId.equals("") == false) {
+                        	int result1 = NhanKhauServices.deleteNhanKhauViaCCCD(cccdId);
+                        }
                         int result2 = NhanKhauServices.deleteNhanKhau(ID);
                         if (result2 == 1) createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Xóa thành công!", "");
                         else createDialog(Alert.AlertType.WARNING, "Thông báo", "Có lỗi, thử lại sau!", "");

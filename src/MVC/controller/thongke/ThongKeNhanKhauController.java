@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 
 public class ThongKeNhanKhauController implements Initializable {
@@ -34,13 +35,20 @@ public class ThongKeNhanKhauController implements Initializable {
 		gioiTinhPieChart.getData().addAll(gioiTinhChartData);
 		gioiTinhPieChart.setLegendSide(Side.BOTTOM);
 		gioiTinhPieChart.setLabelsVisible(false);
-		gioiTinhChartData.forEach(data ->
+		gioiTinhChartData.forEach(data ->{
         data.nameProperty().bind(
                 Bindings.concat(
                         data.getName(), ": ", data.pieValueProperty()
                 		)
-        		)
-		);
+        		);
+        	Tooltip tooltip = new Tooltip();
+        	String percent = String.format("%.1f", (data.getPieValue()*100)/NhanKhauServices.getTotalNhanKhau());
+        	tooltip.setText(percent + "%");
+        	Tooltip.install(data.getNode(), tooltip);
+        	data.pieValueProperty()
+            .addListener((observable, oldValue, newValue) -> 
+                 tooltip.setText(newValue + "%"));
+		});
 		gioiTinhPieChart.setPrefSize(250, 250);
 		ObservableList<PieChart.Data> doTuoiChartData = FXCollections.observableArrayList(
 				new PieChart.Data("Trẻ em", NhanKhauServices.getTotalNhanKhauTreEm()),
@@ -51,13 +59,20 @@ public class ThongKeNhanKhauController implements Initializable {
 		doTuoiPieChart.setLegendSide(Side.BOTTOM);
 		doTuoiPieChart.setLabelsVisible(false);
 		doTuoiPieChart.setPrefSize(270, 270);
-		doTuoiChartData.forEach(data ->
-        data.nameProperty().bind(
-                Bindings.concat(
-                        data.getName(), ": ", data.pieValueProperty()
-                		)
-        		)
-		);		
+		doTuoiChartData.forEach(data ->{
+	        data.nameProperty().bind(
+	                Bindings.concat(
+	                        data.getName(), ": ", data.pieValueProperty()
+	                		)
+	        		);
+	        	Tooltip tooltip = new Tooltip();
+	        	String percent = String.format("%.1f", (data.getPieValue()*100)/NhanKhauServices.getTotalNhanKhau());
+	        	tooltip.setText(percent + "%");
+	        	Tooltip.install(data.getNode(), tooltip);
+	        	data.pieValueProperty()
+	            .addListener((observable, oldValue, newValue) -> 
+	                 tooltip.setText(newValue + "%"));
+			});		
 	}
 
 }

@@ -25,6 +25,27 @@ public class TamTruServices {
 		preparedStatement.setInt(4, idHoKhau);
 		return preparedStatement.executeUpdate();
 	}
+    public static int getTotalTamTruByDate(String fromdate, String todate) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM tamtru WHERE (? <= tamtru.NgayTao AND tamtru.NgayTao <= ?) OR  (? <= tamtru.NgayKetThuc AND tamtru.NgayKetThuc <= ?) OR (tamtru.NgayTao <= ? AND tamtru.NgayKetThuc >= ?)";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setString(1, fromdate);
+            preparedStatement.setString(2, todate);
+            preparedStatement.setString(3, fromdate);
+            preparedStatement.setString(4, todate);
+            preparedStatement.setString(5, fromdate);
+            preparedStatement.setString(6, todate);
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
 	public static int deleteTamTru(int idTamTru) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);

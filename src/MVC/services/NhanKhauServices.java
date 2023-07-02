@@ -17,6 +17,17 @@ public class NhanKhauServices {
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
         return preparedStatement.executeQuery();
     }
+    public static String getNhanKhauById(Connection conn, int idNhanKhau) throws SQLException {
+    	String tenNhanKhau = "";
+    	String SELECT_QUERY = "SELECT nhankhau.HoTen FROM nhankhau WHERE nhankhau.IdNhanKhau = ?";
+    	PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+    	preparedStatement.setInt(1, idNhanKhau);
+    	ResultSet result = preparedStatement.executeQuery();
+    	while(result.next()) {
+    		tenNhanKhau = result.getString(1);
+    	}
+    	return tenNhanKhau;
+    }
     public static int deleteNhanKhau(int ID) throws SQLException {
         PreparedStatement preparedStatement = null;
         Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
@@ -27,18 +38,18 @@ public class NhanKhauServices {
         preparedStatement.setInt(1, ID);
         return preparedStatement.executeUpdate();
     }
-    public static int deleteNhanKhauViaCCCD(int ID) throws SQLException {
+    public static int deleteNhanKhauViaCCCD(String cccd) throws SQLException {
         String DELETE_QUERY = "DELETE FROM cccd " +
-                "WHERE idNhankhau =?";
+                "WHERE idCccd =?";
         Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
         PreparedStatement preparedStatement = conn.prepareStatement(DELETE_QUERY);
-        preparedStatement.setInt(1, ID);
+        preparedStatement.setString(1, cccd);
         return preparedStatement.executeUpdate();
     }
     public static int addNhanKhau(Connection conn, String HoTen, String ngaySinh, String nguyenQuan, boolean gioiTinh,
-        String danToc, String thuongTru, String tonGiao, String quocTich, String ngheNghiep) throws SQLException {
-    	String INSERT_QUERY = "INSERT INTO `nhankhau`(`HoTen`, `DOB`, `GioiTinh`, `NguyenQuan`, `DanToc`, `TonGiao`, `QuocTich`, `ThuongTru`, `NgheNghiep`) " +
-    				"VALUES (?,?,?,?,?,?,?,?,?)";
+        String danToc, String thuongTru, String tonGiao, String quocTich, String ngheNghiep, String cccd) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO `nhankhau`(`HoTen`, `DOB`, `GioiTinh`, `NguyenQuan`, `DanToc`, `TonGiao`, `QuocTich`, `ThuongTru`, `NgheNghiep`, `MaCccd`) " +
+    				"VALUES (?,?,?,?,?,?,?,?,?,?)";
     	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
     	preparedStatement.setString(1, HoTen);
     	preparedStatement.setString(2, ngaySinh);
@@ -53,6 +64,18 @@ public class NhanKhauServices {
     	preparedStatement.setString(8, thuongTru);
     	if(ngheNghiep.equals("")) preparedStatement.setString(9, "Không");
     	else preparedStatement.setString(9, ngheNghiep);
+    	if(cccd.equals("")) preparedStatement.setString(10, "");
+    	else preparedStatement.setString(10, cccd);
+    	return preparedStatement.executeUpdate();
+    }
+    public static int addCccd(Connection conn, String idCccd, String ngayCap, String ngayHetHan, String noiCap, String dacDiem) throws SQLException {
+    	String INSERT_QUERY = "INSERT INTO `cccd`(`IdCccd`, `NgayCap`, `NoiCap`, `NgayHetHan`, `DacDiem`) VALUES (?,?,?,?,?)";
+    	PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY);
+    	preparedStatement.setString(1, idCccd);
+    	preparedStatement.setString(2, ngayCap);
+    	preparedStatement.setString(3, noiCap);
+    	preparedStatement.setString(4, ngayHetHan);
+    	preparedStatement.setString(5, dacDiem);
     	return preparedStatement.executeUpdate();
     }
     public static int updateNhanKhau(Connection conn, String HoTen, String ngaySinh, String nguyenQuan, boolean gioiTinh,
