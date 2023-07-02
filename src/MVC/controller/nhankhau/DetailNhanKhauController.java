@@ -33,6 +33,9 @@ public class DetailNhanKhauController implements Initializable {
 	
     @FXML
     private Button cccdBtn;
+    
+    @FXML
+    private Button themBtn;
 
     @FXML
     private TextField cccdTextField;
@@ -74,6 +77,30 @@ public class DetailNhanKhauController implements Initializable {
     
     private NhanKhau nhanKhau;
     
+    @FXML
+    private Text dacDiemLabel;
+    
+    @FXML
+    private TextField dacDiemTextField;
+    
+    @FXML
+    private DatePicker ngayCapDatePicker;
+
+    @FXML
+    private Text ngayCapLabel;
+    
+    @FXML
+    private DatePicker ngayHetDatePicker;
+
+    @FXML
+    private Text ngayHetLabel;
+    
+    @FXML
+    private Text noiCapLabel;
+
+    @FXML
+    private TextField noiCapTextField;
+    
     public void setNhanKhau(NhanKhau nhanKhau) {
     	this.nhanKhau = nhanKhau;
     	hoVaTenTextField.setText(nhanKhau.getHoTen());
@@ -85,7 +112,11 @@ public class DetailNhanKhauController implements Initializable {
     	noiThuongTruTextField.setText(nhanKhau.getThuongTru());
     	tonGiaoTextField.setText(nhanKhau.getTonGiao());
     	danTocTextField.setText(nhanKhau.getDanToc());
-    	ngheNghiepTextField.setText(nhanKhau.getNgheNghiep());	
+    	ngheNghiepTextField.setText(nhanKhau.getNgheNghiep());
+    	if(cccdTextField.getText().equals("")) {
+    		cccdBtn.setVisible(false);
+    		themBtn.setVisible(true);
+    	}
     }
 
     public int getId(int id) {
@@ -120,6 +151,18 @@ public class DetailNhanKhauController implements Initializable {
     		String tonGiao = tonGiaoTextField.getText();
     		String quocTich = quocTichTextField.getText();
     		String ngheNghiep = ngheNghiepTextField.getText();
+    		String ngayCap;
+    		String ngayHetHan;
+    		if(cccd.equals("")) {
+    			ngayCap = "";
+    			ngayHetHan = "";
+    		}
+    		else {
+				ngayCap = ngayCapDatePicker.getValue().toString();
+				ngayHetHan = ngayHetDatePicker.getValue().toString();
+			}
+    		String noiCap = noiCapTextField.getText();
+    		String dacDiem = dacDiemTextField.getText();
     		if(hoTen.trim().equals("") || ngaySinh.trim().equals("") || gioiTinh.trim().equals("") || nguyenQuan.trim().equals("") || thuongTru.trim().equals("")) {
     			createDialog(
     					Alert.AlertType.WARNING,
@@ -134,8 +177,10 @@ public class DetailNhanKhauController implements Initializable {
     			else gioitinh = false;
     			try {
     				Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-    				int result = NhanKhauServices.updateNhanKhau(conn, hoTen, ngaySinh, nguyenQuan, gioitinh, danToc, thuongTru, tonGiao, quocTich, ngheNghiep, id);
-    				int result2 = NhanKhauServices.updateCccd(conn, cccd, id);
+    				int result = NhanKhauServices.updateNhanKhau(conn, hoTen, ngaySinh, nguyenQuan, gioitinh, danToc, thuongTru, tonGiao, quocTich, ngheNghiep, cccd, id);
+    				if(cccd.equals("") == false) {
+    					int result2 = NhanKhauServices.addCccd(conn, cccd, ngayCap, ngayHetHan, noiCap, dacDiem);
+    				}
     				System.out.println(id);
     				if(result == 1) {
     					createDialog(
@@ -163,7 +208,6 @@ public class DetailNhanKhauController implements Initializable {
         gioiTinhChoiceBox.getItems().add("Nam");
         gioiTinhChoiceBox.getItems().add("Nữ");
         gioiTinhChoiceBox.setValue("Nam");
-        
 	}
 
     @FXML
@@ -178,4 +222,15 @@ public class DetailNhanKhauController implements Initializable {
         stage.setScene(scene);
     }
     
+    @FXML
+    void themCccd(ActionEvent event) {
+    	ngayCapLabel.setVisible(true);
+    	ngayCapDatePicker.setVisible(true);
+    	ngayHetLabel.setVisible(true);
+    	ngayHetDatePicker.setVisible(true);
+    	noiCapLabel.setVisible(true);
+    	noiCapTextField.setVisible(true);
+    	dacDiemLabel.setVisible(true);
+    	dacDiemTextField.setVisible(true);
+    }
 }

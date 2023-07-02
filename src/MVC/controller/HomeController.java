@@ -3,12 +3,16 @@ package MVC.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
+import MVC.services.CachLyServices;
 import MVC.services.HoKhauServices;
 import MVC.services.NhanKhauServices;
+import MVC.services.TamTruServices;
+import MVC.services.TamVangServices;
 import MVC.utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -136,6 +140,8 @@ public class HomeController implements Initializable {
 		usernameLabel.setText(userName);
 		nhankhauLabel.setText(""+NhanKhauServices.getTotalNhanKhau());
 		hokhauLabel.setText(""+HoKhauServices.getTotalSoHoKhau());
+		covidLabel.setText(""+CachLyServices.getTotalCovid());
+		truVangLabel.setText(""+(TamTruServices.getTotalTamTruByDate(LocalDate.now().toString(), LocalDate.now().toString())+TamVangServices.getTotalTamVangByDate(LocalDate.now().toString(), LocalDate.now().toString())));
 	}
 	
     @FXML
