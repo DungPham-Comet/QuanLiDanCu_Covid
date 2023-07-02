@@ -124,12 +124,13 @@ public class NhanKhauServices {
 			System.out.println(result.getString("HoTen"));
 		}
 	}
-    public static int getTotalNhanKhau() {
+    public static int getTotalNhanKhau(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE YEAR(nhankhau.DOB) <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
@@ -140,12 +141,13 @@ public class NhanKhauServices {
         return total;
     }
     
-    public static int getTotalNhanKhauNam() {
+    public static int getTotalNhanKhauSinh(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE nhankhau.GioiTinh = 1";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE YEAR(nhankhau.DOB) = ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
@@ -156,12 +158,13 @@ public class NhanKhauServices {
         return total;
     }
     
-    public static int getTotalNhanKhauNu() {
+    public static int getTotalNhanKhauNam(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE nhankhau.GioiTinh = 0";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE nhankhau.GioiTinh = 1 AND YEAR(nhankhau.DOB) <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
@@ -172,12 +175,13 @@ public class NhanKhauServices {
         return total;
     }
     
-    public static int getTotalNhanKhauTreEm() {
+    public static int getTotalNhanKhauNu(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) <= 18";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE nhankhau.GioiTinh = 0 AND YEAR(nhankhau.DOB) <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
@@ -188,12 +192,13 @@ public class NhanKhauServices {
         return total;
     }
     
-    public static int getTotalNhanKhauLaoDong() {
+    public static int getTotalNhanKhauTreEm(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) > 18 AND TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) < 65";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) <= 18 AND YEAR(nhankhau.DOB) <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
@@ -204,12 +209,30 @@ public class NhanKhauServices {
         return total;
     }
     
-    public static int getTotalNhanKhauNghiHuu() {
+    public static int getTotalNhanKhauLaoDong(String year) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) >= 65";
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) > 18 AND TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) < 65 AND YEAR(nhankhau.DOB) <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
+    
+    public static int getTotalNhanKhauNghiHuu(String year) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM nhankhau WHERE TIMESTAMPDIFF(YEAR, nhankhau.DOB, CURDATE()) >= 65 AND YEAR(nhankhau.DOB) <= ?";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);

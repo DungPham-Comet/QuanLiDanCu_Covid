@@ -52,5 +52,20 @@ public class KhaiTuServices {
     	return preparedStatement.executeUpdate();
     }
     
-    
+    public static int getTotalNhanKhauTu(String year) {
+        int total = 0;
+        String GET_QUERY = "SELECT COUNT(*) FROM khaitu WHERE YEAR(khaitu.NgayChet) = ?";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setInt(1, Integer.parseInt(year));
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+                total = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return total;
+    }
 }

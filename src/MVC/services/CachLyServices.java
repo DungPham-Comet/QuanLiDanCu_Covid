@@ -68,12 +68,13 @@ public class CachLyServices {
         }
         return total;
     }
-    public static int getTotalCovid() {
+    public static int getTotalCovid(String fromdate) {
         int total = 0;
-        String GET_QUERY = "SELECT COUNT(*) FROM cachly";
+        String GET_QUERY = "SELECT COUNT(*) FROM cachly WHERE cachly.ThoiGian <= ?";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
+            preparedStatement.setString(1, fromdate);
             ResultSet result = preparedStatement.executeQuery();
             if (result.next()) {
                 total = result.getInt(1);
